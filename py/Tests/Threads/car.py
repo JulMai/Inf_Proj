@@ -6,6 +6,7 @@ import logging
 class car(Thread):
     def __init__(self, mac) -> None:
         self.car = Overdrive(mac)
+        
         self.logger = Car_Logger(self.car)
 
     

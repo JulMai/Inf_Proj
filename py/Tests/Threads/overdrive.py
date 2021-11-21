@@ -267,7 +267,6 @@ class OverdriveDelegate(btle.DefaultDelegate):
             if commandId == 0x29:
                 # Transition notification
                 piece, piecePrev, offset, direction = struct.unpack_from("<BBfB", data, 2)
-                print(data)
                 threading.Thread(target=self.overdrive._transitionCallback).start()
             elif commandId == 0x17:
                 # Pong

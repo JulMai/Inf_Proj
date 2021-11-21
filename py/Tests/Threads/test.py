@@ -1,26 +1,23 @@
 import logging
+from test_Car_Logger import Car_Logger
 from car import car
 import time
 import threading
+
+from overdrive import Overdrive
 
 def drive_10(car):
     car.changeSpeed(200, 1000)
     time.sleep(100)
     car.changeSpeed(0, 1000)
 
-def check(logger):
-    speed = 0
-    piece = 0
-    while(True):
-        if logger.speed != 0:
-            speed = logger.speed
-            logging.info("Speed: {0}".format(logger.speed))
-        if logger.piece != 0:
-            piece = logger.piece
-            logging.info("Piece: {0}".format(logger.piece))
+def check(car):
+    global logger
+    logger = Car_Logger(car)
+    
 
-        if speed != 0 or piece != 0:
-            break
+        
+
 
 def read_lap(car, car_l):
     track_ids = []
@@ -45,15 +42,18 @@ if __name__ == "__main__":
     logging.basicConfig(format=format, level=logging.INFO,
                         datefmt="%H:%M:%S")
 
-    new_car = car("EC:33:B4:DB:9E:C8")
-    if new_car.car._connected: print("Car connected")
-    new_car.car.changeSpeed(200, 1000)
-    time.sleep(200)
-    new_car.car.changeSpeed(0, 1000)
-    i = new_car.logger.get_refresh_rate()
-    print(i)
+    new_car = Overdrive("EC:33:B4:DB:9E:C8")
+    if new_car._connected: print("Car connected")
 
+    log = threading.Thread(target=check, args=(new_car,))
+    log.start()
+    new_car.changeSpeed(200, 1000)
 
+    time.sleep(10)
+
+    new_car.changeSpeed(0, 1000)   
+    log.join()
+    
     #drive = threading.Thread(target=drive_10, args=(new_car.car,))
     #read = threading.Thread(target=read_lap, args=(new_car.car, new_car.logger))
     #drive.start()

@@ -1,4 +1,4 @@
-import trackPieceFactory 
+from .trackPieceFactory import get_TrackPiece
 
 
 class Track :
@@ -8,7 +8,7 @@ class Track :
         self.trackPieces = []
 
         for i in ids:
-            trackPiece = trackPieceFactory.get_TrackPiece(i)
+            trackPiece = get_TrackPiece(i)
 
             if trackPiece != None:
                 self.trackPieces.append(trackPiece)

@@ -1,4 +1,4 @@
-from trackPiece import TrackPiece
+from .trackPiece import TrackPiece
 
 def get_TrackPiece(id):
     return {
@@ -26,22 +26,23 @@ def get_CurvePiece(id):
     lane14= [ 32, 33, 34 ]
     lane15= [ 35, 36, 37 ]
     coordinates = []
-    coordinates[0] = lane00
-    coordinates[1] = lane01
-    coordinates[2] = lane02
-    coordinates[3] = lane03
-    coordinates[4] = lane04
-    coordinates[5] = lane05
-    coordinates[6] = lane06
-    coordinates[7] = lane07
-    coordinates[8] = lane08
-    coordinates[9] = lane09
-    coordinates[10] = lane10
-    coordinates[11] = lane11
-    coordinates[12] = lane12
-    coordinates[13] = lane13
-    coordinates[14] = lane14
-    coordinates[15] = lane15
+    coordinates.append(lane00)
+    coordinates.append(lane01)
+    coordinates.append(lane02)
+    coordinates.append(lane03)
+    coordinates.append(lane04)
+    coordinates.append(lane05)
+    coordinates.append(lane06)
+    coordinates.append(lane07)
+    coordinates.append(lane08)
+    coordinates.append(lane09)
+    coordinates.append(lane10)
+    coordinates.append(lane11)
+    coordinates.append(lane12)
+    coordinates.append(lane13)
+    coordinates.append(lane14)
+    coordinates.append(lane15)
+    return TrackPiece(id, 'curve', coordinates)
 
 def get_StraightPiece(id):
     lane00= [ 0, 1, 2 ]
@@ -61,22 +62,23 @@ def get_StraightPiece(id):
     lane14= [ 42, 43, 44 ]
     lane15= [ 45, 46, 47 ]
     coordinates = []
-    coordinates[0] = lane00
-    coordinates[1] = lane01
-    coordinates[2] = lane02
-    coordinates[3] = lane03
-    coordinates[4] = lane04
-    coordinates[5] = lane05
-    coordinates[6] = lane06
-    coordinates[7] = lane07
-    coordinates[8] = lane08
-    coordinates[9] = lane09
-    coordinates[10] = lane10
-    coordinates[11] = lane11
-    coordinates[12] = lane12
-    coordinates[13] = lane13
-    coordinates[14] = lane14
-    coordinates[15] = lane15
+    coordinates.append(lane00)
+    coordinates.append(lane01)
+    coordinates.append(lane02)
+    coordinates.append(lane03)
+    coordinates.append(lane04)
+    coordinates.append(lane05)
+    coordinates.append(lane06)
+    coordinates.append(lane07)
+    coordinates.append(lane08)
+    coordinates.append(lane09)
+    coordinates.append(lane10)
+    coordinates.append(lane11)
+    coordinates.append(lane12)
+    coordinates.append(lane13)
+    coordinates.append(lane14)
+    coordinates.append(lane15)
+    return TrackPiece(id, 'straight', coordinates)
 
 def get_FinishPiece(id):
     lane00= [ 0, 1 ]
@@ -96,22 +98,23 @@ def get_FinishPiece(id):
     lane14= [ 28, 29 ]
     lane15= [ 30, 31 ]
     coordinates = []
-    coordinates[0] = lane00
-    coordinates[1] = lane01
-    coordinates[2] = lane02
-    coordinates[3] = lane03
-    coordinates[4] = lane04
-    coordinates[5] = lane05
-    coordinates[6] = lane06
-    coordinates[7] = lane07
-    coordinates[8] = lane08
-    coordinates[9] = lane09
-    coordinates[10] = lane10
-    coordinates[11] = lane11
-    coordinates[12] = lane12
-    coordinates[13] = lane13
-    coordinates[14] = lane14
-    coordinates[15] = lane15
+    coordinates.append(lane00)
+    coordinates.append(lane01)
+    coordinates.append(lane02)
+    coordinates.append(lane03)
+    coordinates.append(lane04)
+    coordinates.append(lane05)
+    coordinates.append(lane06)
+    coordinates.append(lane07)
+    coordinates.append(lane08)
+    coordinates.append(lane09)
+    coordinates.append(lane10)
+    coordinates.append(lane11)
+    coordinates.append(lane12)
+    coordinates.append(lane13)
+    coordinates.append(lane14)
+    coordinates.append(lane15)
+    return TrackPiece(id, 'finish', coordinates)
 
 def get_StartPiece(id):
     lane00= [ 0 ]
@@ -131,19 +134,20 @@ def get_StartPiece(id):
     lane14= [ 14 ]
     lane15= [ 15 ]
     coordinates = []
-    coordinates[0] = lane00
-    coordinates[1] = lane01
-    coordinates[2] = lane02
-    coordinates[3] = lane03
-    coordinates[4] = lane04
-    coordinates[5] = lane05
-    coordinates[6] = lane06
-    coordinates[7] = lane07
-    coordinates[8] = lane08
-    coordinates[9] = lane09
-    coordinates[10] = lane10
-    coordinates[11] = lane11
-    coordinates[12] = lane12
-    coordinates[13] = lane13
-    coordinates[14] = lane14
-    coordinates[15] = lane15
+    coordinates.append(lane00)
+    coordinates.append(lane01)
+    coordinates.append(lane02)
+    coordinates.append(lane03)
+    coordinates.append(lane04)
+    coordinates.append(lane05)
+    coordinates.append(lane06)
+    coordinates.append(lane07)
+    coordinates.append(lane08)
+    coordinates.append(lane09)
+    coordinates.append(lane10)
+    coordinates.append(lane11)
+    coordinates.append(lane12)
+    coordinates.append(lane13)
+    coordinates.append(lane14)
+    coordinates.append(lane15)
+    return TrackPiece(id, 'start', coordinates)
