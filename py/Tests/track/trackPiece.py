@@ -19,7 +19,7 @@ class TrackPiece:
             33: 'start',
             34: 'finish',
             36: 'straight',
-            39: 'straigt',
+            39: 'straight',
             48: 'straight'
         }.get(id, '')
     
