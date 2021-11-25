@@ -4,9 +4,11 @@ import time
 from track.track import Track
 from Threads.test_Car_Logger import Car_Logger
 from overdrive import Overdrive
+from vehicle.vehicle import Vehicle
 
 
 def logging_car(car):
+    logging.info("Thread Logger")
     global logger
     logger = Car_Logger(car)
 
@@ -15,7 +17,10 @@ if __name__ == "__main__":
     format = "%(asctime)s: %(message)s"
     logging.basicConfig(format=format, level=logging.INFO,
                         datefmt="%H:%M:%S")
+    #car = Overdrive("D9:A6:FA:EB:FC:01")
     car = Overdrive("EC:33:B4:DB:9E:C8")
+    #car = Vehicle("EC:33:B4:DB:9E:C8")
+
     if car._connected:
         logging.info("Car connected")
     
@@ -23,6 +28,8 @@ if __name__ == "__main__":
     log = Thread(target=logging_car, args=(car,))
     logging.info("Starting Thread for Logging")
     log.start()
+
+    time.sleep(1)
 
     logging.info("Accelerate Car")
     car.changeSpeed(200, 1000)
@@ -55,6 +62,5 @@ if __name__ == "__main__":
     log.join()
 
     track = Track(track_ids)
-    print(track)
     
 

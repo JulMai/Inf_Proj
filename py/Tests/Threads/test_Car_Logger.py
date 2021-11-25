@@ -26,10 +26,10 @@ class Car_Logger(Thread):
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
         # Print out addr, piece ID, location ID of the vehicle, this print everytime when location changed
-        self.car.location = location
-        self.car.piece = piece
-        self.car.speed = speed
-        self.car.clockwise = clockwise
+        self.location = location
+        self.piece = piece
+        self.speed = speed
+        self.clockwise = clockwise
         refresh = datetime.now()
         #diff = (refresh - self.last_refresh).microseconds / 1e+6
         # self.refreshes.append(diff)
