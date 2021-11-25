@@ -30,10 +30,12 @@ class Vehicle(Overdrive):
         self.offset = 0  # !not final, waiting for validation
         self.piecePrev = 0  # !not final, waiting for validation
         # Setter function !not final, only for testing
-        self._locationChangeCallbackFunc = lambda location, piece, offset, speed, clockwiseVal: self.location=location, self.piece=piece, self.offset=offset, self.speed=speed
+        #self._locationChangeCallbackFunc = lambda location, piece, offset, speed, clockwiseVal: self.location=location, self.piece=piece, self.offset=offset, self.speed=speed
+        self._locationChangeCallbackFunc = None
         self._pongCallbackFunc = None  # todo
         # Setter function !not final, only for testing
-        self._transitionCallbackFunc = lambda piece, piecePrev, offset, direction: self.piece=piece, self.piecePrev=piecePrev, self.offset=offset, self.direction=direction
+        #self._transitionCallbackFunc = lambda piece, piecePrev, offset, direction: self.piece=piece, self.piecePrev=piecePrev, self.offset=offset, self.direction=direction
+        self._transitionCallbackFunc = None
         while True:
             try:
                 self.connect()

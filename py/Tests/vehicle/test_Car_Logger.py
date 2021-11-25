@@ -5,15 +5,14 @@ import logging
 from threading import Thread
 
 
-class Car_Logger(Thread):
+class Car_Logger():
     location = 0
     piece = 0
     speed = 0
     clockwise = False
     last_refresh = datetime.now()
     refreshes = []
-    car = None
-
+    
     def __init__(self, car):
         format = "%(asctime)s: %(message)s"
         logging.basicConfig(
@@ -21,8 +20,6 @@ class Car_Logger(Thread):
         car.setLocationChangeCallback(self.locationChangeCallback)
         self.car = car
 
-    def run():
-        pass
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
         # Print out addr, piece ID, location ID of the vehicle, this print everytime when location changed
