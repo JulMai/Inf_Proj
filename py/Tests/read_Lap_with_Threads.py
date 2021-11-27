@@ -32,7 +32,7 @@ if __name__ == "__main__":
     time.sleep(1)
 
     logging.info("Accelerate Car")
-    car.changeSpeed(200, 1000)
+    car.changeSpeed(150, 1000)
     
     track_ids = []
     current_piece = 33
@@ -62,5 +62,6 @@ if __name__ == "__main__":
     log.join()
 
     track = Track(track_ids)
+    print(track_ids)
     
 

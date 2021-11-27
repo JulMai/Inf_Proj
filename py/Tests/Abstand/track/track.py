@@ -1,4 +1,4 @@
-from trackPieceFactory import get_TrackPiece
+from track.trackPieceFactory import get_TrackPiece
 
 
 class Track :
