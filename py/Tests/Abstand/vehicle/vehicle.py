@@ -21,6 +21,7 @@ class Vehicle(Overdrive):
         self._writeQueue = queue.Queue()
         self._btleSubThread = None
         self.speed = 0
+        self.desired_speed = 0
         self.location = 0
         self.piece = 0
         self.batteryStatus = -1
@@ -29,6 +30,7 @@ class Vehicle(Overdrive):
         self.direction = 0  # !not final, waiting for validation
         self.offset = 0  # !not final, waiting for validation
         self.piecePrev = 0  # !not final, waiting for validation
+        self.abstand = 0
         # Setter function !not final, only for testing
         #self._locationChangeCallbackFunc = lambda location, piece, offset, speed, clockwiseVal: self.location=location, self.piece=piece, self.offset=offset, self.speed=speed
         self._locationChangeCallbackFunc = None

@@ -145,6 +145,23 @@ def scan_track_with_lanes(car, speed=500):
 
     car_logger.join()
 
+    has_33 = False
+    has_34 = False
+
+    for id in track_t:
+        if id[0] == 33:
+            has_33 = True
+        if id[0] == 34:
+            has_34 = True
+
+    if has_33 == False:
+        track_t.reverse()
+        track_t.append((33, 0))
+        track_t.reverse()
+    
+    if has_34 == False:
+        track_t.append((34, 0))
+
     return track_t
 
 
