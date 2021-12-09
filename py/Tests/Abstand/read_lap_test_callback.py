@@ -169,5 +169,3 @@ if __name__ == "__main__":
     #car = Vehicle("D9:A6:FA:EB:FC:01")
     car = Vehicle("EC:33:B4:DB:9E:C8")
     print(str(scan_track(car)))
-        
-        

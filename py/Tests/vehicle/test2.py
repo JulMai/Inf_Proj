@@ -8,7 +8,7 @@ car = Vehicle("EC:33:B4:DB:9E:C8")
 #car = Vehicle("FD:74:D8:83:05:B0")
 
 car.changeSpeed(500, 1000)
-time.sleep(1)
+time.sleep()
 car.changeSpeed(0, 1000)
 print(car._delegate.sum_right)
 print(car._delegate.sum_left)

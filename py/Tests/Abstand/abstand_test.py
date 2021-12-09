@@ -40,9 +40,7 @@ class Car_Logger(Thread):
         i = 0
         j = 0
         a = 0
-        logging.info("Car {0}: Piece: {1} Location: {2}".format(self.car.addr, piece, location))
-
-
+        #logging.info("Car {0}: Piece: {1} Location: {2}".format(self.car.addr, piece, location))
 
         for x in list(track_c.keys()):
             if int(x[2:4]) == piece and int(x[4:6]) == location and (not car_on_track or track_c[x] != self.car.addr):
@@ -65,8 +63,8 @@ class Car_Logger(Thread):
                         logging.info("Car {0}: acc again")
                         self.car.changeSpeed(self.car.desired_speed, 1000)
                     else:
-                        abstand_quo = 2 * (abstand_r / self.car.abstand)
-                        new_speed = min(max(int(self.car.desired_speed * abstand_quo), 0), 700)
+                        abstand_quo = (abstand_r / self.car.abstand)
+                        new_speed = min(max(int(speed * abstand_quo), 0), 700)
                         self.car.changeSpeed(new_speed, 1000)
                         logging.info("Car {0}: Change Speed to {1}; Abstand_r: {2}; Abstand_Quo: {3}".format(self.car.addr, new_speed, abstand_r, abstand_quo))                    
                 else:
@@ -74,9 +72,11 @@ class Car_Logger(Thread):
                         self.car.changeSpeed(self.car.desired_speed, 1000)
                         logging.info("Car {0}: Abstand_r: {1}".format(self.car.addr, abstand_r))
             else:
-                if abs(1 - (self.car.desired_speed / speed)) > 0.1:
-                    self.car.changeSpeed(self.car.desired_speed, 1000)
-                    logging.info("Car {0}: Abstand_r: {1}".format(self.car.addr, abstand_r))
+                if abs(1 - (self.car.desired_speed / speed)) > 0.3:
+                    new_speed = int(speed + ((self.car.desired_speed - speed) / 2))
+                    self.car.changeSpeed(new_speed, 1000)
+                    logging.info("Car {0}: Change Speed to {1}".format(self.car.addr, new_speed))
+        #logging.info(str(track_c))
                     
 
         self.car.piece = piece
@@ -173,17 +173,21 @@ if __name__ == "__main__":
     car2_logger = Car_Logger(kwargs={'car': car2})
 
     car1_logger = Car_Logger(kwargs={'car': car1})
+    logging.info("Start Threads Car_Loggers")
     car1_logger.start()
     car2_logger.start()
     
+    logging.info("Accel Cars")
     car1.changeSpeed(500, 1000)
     car2.changeSpeed(400, 1000)
 
-    time.sleep(20)
+    time.sleep(40)
 
+    logging.info("Stop Cars")
     car1.changeSpeed(0, 1000)
     car2.changeSpeed(0, 1000)
 
+    logging.info("Close Threads for Car_Loggers")
     car1_logger.join()
     car2_logger.join()
     print("beendet")

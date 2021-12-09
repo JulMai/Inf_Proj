@@ -69,14 +69,15 @@ class Vehicle(Overdrive):
 
     def sendBatteryStatusRequest(self):
         # battery level request command
-        command = struct.pack("<B", 0x1a)
+        command = struct.pack("<H", 0x1a)
         self.sendCommand(command)
 
     def _setBatteryStatus(self, batteryStatus):
         self.batteryStatus = batteryStatus
+        print(self.batteryStatus)
 
     def getBatteryStatus(self):
-        if self.batteryStatus > -1:
+        if self.batteryStatus != (-1):
             return self.batteryStatus
 
 

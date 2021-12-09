@@ -25,8 +25,8 @@ class Car_Logger(Thread):
         self.clockwise = clockwise
 
 
-#car = Vehicle("EC:33:B4:DB:9E:C8")
-car = Vehicle("D9:A6:FA:EB:FC:01")
+car = Vehicle("EC:33:B4:DB:9E:C8")
+#car = Vehicle("D9:A6:FA:EB:FC:01")
 
 car_l = Car_Logger(kwargs={'car': car})
 car_l.start()
