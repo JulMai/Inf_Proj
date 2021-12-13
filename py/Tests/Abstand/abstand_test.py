@@ -6,6 +6,7 @@ from track.track import Track
 from track.trackPieceFactory import get_TrackPiece
 from read_lap_test_callback import scan_track_with_lanes
 import os
+import math
 
 car_on_track = False
 
@@ -63,10 +64,14 @@ class Car_Logger(Thread):
                         logging.info("Car {0}: acc again")
                         self.car.changeSpeed(self.car.desired_speed, 1000)
                     else:
-                        abstand_quo = (abstand_r / self.car.abstand)
-                        new_speed = min(max(int(speed * abstand_quo), 0), 700)
+                        #abstand_quo = (abstand_r / self.car.abstand)
+                        #new_speed = min(max(int(speed * abstand_quo), 0), 700)
+                        # (1 - min.Anpassung)*log(Abstand_Ist;Abstand_Soll)+min.Anpassung
+                        c = 0.3
+                        faktor = int((1 - c) * math.log(abstand_r, self.car.abstand) +c)
+                        new_speed = faktor * speed
                         self.car.changeSpeed(new_speed, 1000)
-                        logging.info("Car {0}: Change Speed to {1}; Abstand_r: {2}; Abstand_Quo: {3}".format(self.car.addr, new_speed, abstand_r, abstand_quo))                    
+                        logging.info("Car {0}: Change Speed to {1}; Abstand_r: {2}; Faktor: {3}".format(self.car.addr, new_speed, abstand_r, faktor))                    
                 else:
                     if abs(1 - (self.car.desired_speed / speed)) > 0.1:
                         self.car.changeSpeed(self.car.desired_speed, 1000)
@@ -166,6 +171,8 @@ if __name__ == "__main__":
     track = get_track_with_lanes(track_t)
 
     track_c = get_track_dict(track_t)
+
+    
 
     time.sleep(1)
 
