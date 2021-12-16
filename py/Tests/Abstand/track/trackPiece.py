@@ -21,7 +21,7 @@ class TrackPiece:
             36: 'straight',
             39: 'straight',
             48: 'straight',
-            10: 'straight'
+            10: 'intersection'
         }.get(id, '')
     
     def get_id(self):
