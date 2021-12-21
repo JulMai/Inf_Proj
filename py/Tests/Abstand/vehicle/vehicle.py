@@ -24,6 +24,7 @@ class Vehicle(Overdrive):
         self.desired_speed = 0
         self.location = 0
         self.piece = 0
+        self.position = 0
         self.batteryStatus = -1
         self.acceleration = 0
         self.clockwise = False  # !not final, waiting for validation

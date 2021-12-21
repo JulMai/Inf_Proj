@@ -58,13 +58,16 @@ class Car_Logger_with_lanes(Thread):
           
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
-        if self.check_id(piece) != '' and not (piece == 34 and len(self.track_ids)==0):
-            if piece == self.piece:
-                if (location > self.location and clockwise == True) or (location < self.location and clockwise == False):
-                    self.track_ids.append((piece, location))               
-            else:
-                self.track_ids.append((piece, location))
-        
+        logging.info("Piece: {0}, Location: {1},Clockwise: {2}".format(piece, location ,clockwise))
+        #if self.check_id(piece) != '' and not (piece == 34 and len(self.track_ids)==0):
+        #    if piece == self.piece:
+        #        if (location > self.location and clockwise == True) or (location < self.location and clockwise == False):
+        #            self.track_ids.append((piece, location, clockwise))
+        #    else:
+        #        self.track_ids.append((piece, location, clockwise))
+
+        self.track_ids.append((piece, location, clockwise))
+
         self.piece = piece
         self.location = location
         self.speed = speed
@@ -132,40 +135,40 @@ def scan_track_with_lanes(car, speed=500):
 
     car.changeSpeed(speed, 1000)
 
-    while (car_logger.piece != 34 or len(car_logger.track_ids)==0):
-            pass
-
-    if len(car_logger.track_ids) < 4:
-        while (car_logger.piece != 34 or len(car_logger.track_ids)==0):
-            pass
+    while (True):
+        if car_logger.piece == 34 and len(car_logger.track_ids)>=4:
+            break
 
     car.changeSpeed(0, 1000)
+    time.sleep(1)
 
     track_t = car_logger.track_ids
 
     car_logger.join()
 
-    has_33 = False
-    has_34 = False
+    #has_33 = False
+    #has_34 = False
 
-    for id in track_t:
-        if id[0] == 33:
-            has_33 = True
-        if id[0] == 34:
-            has_34 = True
+    #for id in track_t:
+    #    if id[0] == 33:
+    #        has_33 = True
+    #    if id[0] == 34:
+    #        has_34 = True
 
-    if has_33 == False:
-        track_t.reverse()
-        track_t.append((33, 0))
-        track_t.reverse()
+    #if has_33 == False:
+    #    track_t.reverse()
+    #    track_t.append((33, 0))
+    #    track_t.reverse()
     
-    if has_34 == False:
-        track_t.append((34, 0))
+    #if has_34 == False:
+    #    track_t.append((34, 0))
 
     return track_t
 
 
 if __name__ == "__main__":
-    #car = Vehicle("D9:A6:FA:EB:FC:01")
-    car = Vehicle("EC:33:B4:DB:9E:C8")
-    print(str(scan_track(car)))
+    format = "%(asctime)s: %(message)s"
+    logging.basicConfig(filename="read_lap_testing.log", filemode="w", format=format, level=logging.INFO, datefmt="%H:%M:%S")
+    car = Vehicle("D9:A6:FA:EB:FC:01")
+    #car = Vehicle("EC:33:B4:DB:9E:C8")
+    print(str(scan_track_with_lanes(car)))

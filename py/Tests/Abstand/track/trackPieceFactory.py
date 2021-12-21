@@ -2,11 +2,10 @@ from track.trackPiece import TrackPiece
 
 def get_TrackPiece(id):
     return {
-        'straight'      : get_StraightPiece(id),
-        'curve'         : get_CurvePiece(id),
-        'start'         : get_StartPiece(id),
-        'finish'        : get_FinishPiece(id)
-        'intersection'  : get_IntersectionPiece(id),
+        'straight'  : get_StraightPiece(id),
+        'curve'     : get_CurvePiece(id),
+        'start'     : get_StartPiece(id),
+        'finish'    : get_FinishPiece(id)
     }.get(TrackPiece.get_TrackPieceType(id), None)
 
 def get_CurvePiece(id):
@@ -152,39 +151,3 @@ def get_StartPiece(id):
     coordinates.append(lane14)
     coordinates.append(lane15)
     return TrackPiece(id, 'start', coordinates)
-
-def get_CrossPiece(id):
-    lane00 = [0, 4, 8, 12]
-    lane01 = [0, 4, 8, 12]
-    lane02 = [0, 4, 8, 12]
-    lane03 = [0, 4, 8, 12]
-    lane04 = [1, 5, 9, 13]
-    lane05 = [1, 5, 9, 13]
-    lane06 = [1, 5, 9, 13]
-    lane07 = [1, 5, 9, 13]
-    lane08 = [2, 6, 10, 14]
-    lane09 = [2, 6, 10, 14]
-    lane10 = [2, 6, 10, 14]
-    lane11 = [2, 6, 10, 14]
-    lane12 = [3, 7, 11, 15]
-    lane13 = [3, 7, 11, 15]
-    lane14 = [3, 7, 11, 15]
-    lane15 = [3, 7, 11, 15]
-    coordinates = []
-    coordinates.append(lane00)
-    coordinates.append(lane01)
-    coordinates.append(lane02)
-    coordinates.append(lane03)
-    coordinates.append(lane04)
-    coordinates.append(lane05)
-    coordinates.append(lane06)
-    coordinates.append(lane07)
-    coordinates.append(lane08)
-    coordinates.append(lane09)
-    coordinates.append(lane10)
-    coordinates.append(lane11)
-    coordinates.append(lane12)
-    coordinates.append(lane13)
-    coordinates.append(lane14)
-    coordinates.append(lane15)
-    return TrackPiece(id, 'cross', coordinates)
