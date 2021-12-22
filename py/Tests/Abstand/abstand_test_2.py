@@ -8,7 +8,7 @@ from vehicle.vehicle import Vehicle
 from track.track import Track
 from track.trackPieceFactory import get_TrackPiece
 from read_lap_test_callback import scan_track_with_lanes
-from drive_to_start import drive_to_start
+from functions.drive_to_start import drive_to_start
 
 cars = {}
 track_c_direction = {}
@@ -291,8 +291,8 @@ if __name__ == "__main__":
 
     time.sleep(1)
 
-    car1_logger = Car_Logger(kwargs={'car': car1})
-    car2_logger = Car_Logger(kwargs={'car': car2})
+    car1_logger = Car_Logger_Dist(kwargs={'car': car1})
+    car2_logger = Car_Logger_Dist(kwargs={'car': car2})
     car1_logger.start()
     car2_logger.start()
     logging.info("Started Threads for Car_Loggers")

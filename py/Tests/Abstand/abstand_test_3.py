@@ -9,7 +9,7 @@ from vehicle.vehicle import Vehicle
 from track.track import Track
 from track.trackPieceFactory import get_TrackPiece
 from read_lap_test_callback import scan_track_with_lanes
-from drive_to_start import drive_to_start
+from functions.drive_to_start import drive_to_start
 
 cars = {}
 track_c_direction = {}
