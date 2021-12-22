@@ -11,7 +11,8 @@ class TrackPiece:
         self.coordinates = coordinates
 
     def get_TrackPieceType(id):
-        return {        
+        return {
+            10: 'intersection',     
             17: 'curve',
             18: 'curve',
             20: 'curve',
@@ -20,8 +21,8 @@ class TrackPiece:
             34: 'finish',
             36: 'straight',
             39: 'straight',
-            48: 'straight',
-            10: 'straight'
+            40: 'straight',
+            48: 'straight'            
         }.get(id, '')
     
     def get_id(self):

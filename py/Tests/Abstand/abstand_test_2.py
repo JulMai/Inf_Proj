@@ -3,7 +3,6 @@ import time
 import logging
 import os
 import math
-import collections
 
 from vehicle.vehicle import Vehicle
 from track.track import Track
@@ -15,7 +14,7 @@ cars = {}
 track_c_direction = {}
 
 
-class Car_Logger(Thread):
+class Car_Logger_Dist(Thread):
     location = 0
     piece = 0
     speed = 0
@@ -49,27 +48,15 @@ class Car_Logger(Thread):
 
         car_pos = add_car_to_track_c(piece, location, self.car.addr)
         #logging.info("Car {0}: Pos: {1}".format(self.car.addr, car_pos))
-        i = get_pos_index_in_track_c(car_pos)
 
-        abstand_r = 100
-        car_ahead_speed = 0
+        abstand_r, car_ahead_speed = calc_distance_to_next_car(
+            self.car, car_pos)
 
-        car_spots = list(track_c.values())
+        new_speed = calc_new_speed(self.car, abstand_r, speed, car_ahead_speed)
+        if new_speed:
+            self.car.changeSpeed(new_speed, 1000)
 
-        for j in range(i + 1, min(len(track_c), i + self.car.abstand + 1)):
-            if car_spots[j] != None and car_spots[j] != self.car.addr:
-                abstand_r = j - i
-                car_ahead_speed = cars[car_spots[j]].speed
-                break
-
-        if abstand_r == 0 and self.car.abstand > (len(car_spots) - i):
-            k = (len(car_spots) - i)
-            for j in range(0, self.car.abstand + 1 - k):
-                if car_spots[j] != None and car_spots[j] != self.car.addr:
-                    abstand_r = j + k
-                    car_ahead_speed = cars[car_spots[j]].speed
-                    break
-
+        ## debug
         car_positions = []
         pi = 0
         for p in track_c.keys():
@@ -77,43 +64,66 @@ class Car_Logger(Thread):
                 car_positions.append((p, track_c[p]))
                 pi += 1
 
-        logging.info("Cars: {0}".format(car_positions))
+        logging.info("Cars: {0}".format(car_positions))        
+
         if abstand_r != 100:
             logging.info("Car {0}: Abstand_Ist: {1}".format(
                 self.car.addr, abstand_r))
-
-        if abstand_r == self.car.abstand:
-            self.car.changeSpeed(car_ahead_speed, 1000)
-            logging.info("Car {0}: Abstand: wie gewünscht; Change speed to {1}".format(
-                self.car.addr, car_ahead_speed))
-        else:
-            # if abstand_r <= 1:
-            #    self.car.changeSpeed(150, 1000)
-            #    time.sleep(0.5)
-            #    self.car.changeSpeed(self.car.desired_speed, 1000)
-            # el
-            if abstand_r < self.car.abstand:
-                # Abstand zu gering => langsamer werden
-                #abstand_quo = (abstand_r / self.car.abstand)
-                #new_speed = min(max(int(speed * abstand_quo), 0), 700)
-                # (1 - min.Anpassung)*log(Abstand_Ist;Abstand_Soll)+min.Anpassung
-                c = 0.6
-                faktor = (1 - c) * math.log(abstand_r, self.car.abstand) + c
-                new_speed = int(faktor * speed)
-                self.car.changeSpeed(new_speed, 1000)
-                logging.info("Car {0}: (too close) Change Speed to {1}; Abstand_Ist: {2}; Faktor: {3}".format(
-                    self.car.addr, new_speed, abstand_r, faktor))
-            else:
-                # Abstand in Ordnung => gewünschte Geschwindigkeit
-                if abs(1 - (speed/self.car.desired_speed)) > 0.3:
-                    self.car.changeSpeed(self.car.desired_speed, 1000)
-                    logging.info("Car {0}: kein Auto voraus; Change speed to {1}".format(
-                        self.car.addr, self.car.desired_speed))
+        ## debug
 
 
 track = []
 track_c = {}
 cars = {}
+
+
+def calc_distance_to_next_car(car, car_pos):
+    global track_c
+    abstand_r = 100
+    car_ahead_speed = 0
+    i = get_pos_index_in_track_c(car_pos)
+
+    car_spots = list(track_c.values())
+    for j in range(i + 1, min(len(track_c), i + car.abstand + 1)):
+        if car_spots[j] != None and car_spots[j] != car.addr:
+            car_ahead_speed = cars[car_spots[j]].speed
+            abstand_r = j - i            
+            break
+
+    if abstand_r == 0 and car.abstand > (len(car_spots) - i):
+        k = (len(car_spots) - i)
+        for j in range(0, car.abstand + 1 - k):
+            if car_spots[j] != None and car_spots[j] != car.addr:
+                car_ahead_speed = cars[car_spots[j]].speed
+                abstand_r = j + k                
+                break
+    if abstand_r != 100:
+        logging.info("Car {0}: Distance {1} to {2}".format(car.addr, abstand_r, car_spots[j]))
+    return abstand_r, car_ahead_speed
+
+
+def calc_new_speed(car, abstand_r, speed_before, car_ahead_speed):
+    if abstand_r > car.abstand:
+        # Abstand in Ordnung => gewünschte Geschwindigkeit
+            if abs(1 - (speed_before/car.desired_speed)) > 0.1:
+                logging.info("Car {0}: kein Auto voraus; Change speed to {1}".format(
+                    car.addr, car.desired_speed))
+                return car.desired_speed
+
+    if abstand_r == car.abstand:
+        logging.info("Car {0}: Abstand: wie gewünscht; Change speed to {1}".format(
+            car.addr, car_ahead_speed))
+        return car_ahead_speed
+
+    if abstand_r < car.abstand:
+        # Abstand zu gering => langsamer werden
+        c = 0.6
+        faktor = (1 - c) * math.log(abstand_r, car.abstand) + c
+        new_speed = int(faktor * speed_before)
+        logging.info("Car {0}: (too close) Change Speed to {1}; Abstand_Ist: {2}; Faktor: {3}".format(
+            car.addr, new_speed, abstand_r, faktor))
+        return new_speed
+            
 
 
 def remove_car_from_track(car):
