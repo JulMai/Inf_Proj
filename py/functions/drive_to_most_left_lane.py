@@ -2,8 +2,8 @@ import time
 import os
 from threading import Thread
 
-from vehicle.vehicle import Vehicle
-from track.trackPieceFactory import get_TrackPiece
+from Vehicle.vehicle import Vehicle
+from Track.trackPieceFactory import get_TrackPiece
 
 track = []
 

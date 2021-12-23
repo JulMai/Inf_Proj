@@ -25,20 +25,21 @@ class Car_Logger(Thread):
         self.clockwise = clockwise
 
 
-car = Vehicle("EC:33:B4:DB:9E:C8")
-#car = Vehicle("D9:A6:FA:EB:FC:01")
+def drive_to_start(car):
+    car_l = Car_Logger(kwargs={'car': car})
+    car_l.start()
 
-car_l = Car_Logger(kwargs={'car': car})
-car_l.start()
+    car.changeSpeed(600, 1000)
 
-car.changeSpeed(600, 1000)
+    while(car_l.piece != 34):
+        pass
 
-while(car_l.piece != 34):
-    pass
+    car.changeSpeed(0, 1000)
+    time.sleep(1)
+    car_l.join()
 
-car.changeSpeed(0, 1000)
-time.sleep(1)
-car_l.join()
-del car_l
-del car
-os._exit(0)
+if __name__ == '__main__':
+    car = Vehicle("EC:33:B4:DB:9E:C8")
+    drive_to_start(car)
+    del car
+    os._exit(0)

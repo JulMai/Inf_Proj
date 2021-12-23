@@ -1,10 +1,10 @@
 import logging
 import math
 
-from Car_Logger import Car_Logger
+from Car_Logger.Car_Logger import Car_Logger
 
 
-class Car_logger_distance(Car_Logger):
+class Car_Logger_distance(Car_Logger):
 
     def run(self):
         super().run(self)
@@ -175,7 +175,7 @@ class Car_logger_distance(Car_Logger):
 
 
 def setup_and_start_Car_Logger(car, cars, track):
-    c_l = Car_logger_distance(kwargs={'car': car, 'cars': cars, 'track': track})
+    c_l = Car_Logger_distance(kwargs={'car': car, 'cars': cars, 'track': track})
     c_l.start()
     logging.info("Started Car_Logger_distanc-Thread for Car: {0}".format(car.addr))
     return c_l
