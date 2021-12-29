@@ -1,13 +1,15 @@
 import logging
 import math
+from threading import Thread
 
-from Car_Logger.Car_Logger import Car_Logger
+from Car_Logger import Car_Logger
 
 
-class Car_Logger_distance(Car_Logger):
+class Car_Logger_distance(Thread):
 
     def run(self):
-        super().run(self)
+        self.car = self._kwargs['car']
+        self.car.setLocationChangeCallback(self.locationChangeCallback)
         self.track_c = self._kwargs['track']
         self.cars = self._kwargs['cars']
 
@@ -66,6 +68,9 @@ class Car_Logger_distance(Car_Logger):
             return new_pos
         else:
             return old_pos
+        
+    def compare_pos_loc_with_str(piece, location, pos_str):
+        return int(pos_str[2:4]) == piece and int(pos_str[4:6]) == location
 
     def calc_distance_to_next_car(self, car, car_pos):
         global track_c
@@ -119,45 +124,7 @@ class Car_Logger_distance(Car_Logger):
             if self.track_c[x] == car:
                 self.track_c[x] = None
 
-    def add_car_to_track_c(self, piece, location, car_addr):
-        global track_c
-        i = 0
-
-        old_pos = self.get_car_pos_in_track_c(car_addr)
-        i_old_pos = self.get_pos_index_in_track_c(old_pos)
-        #old_pos_clockwise = get_pos_clockwise(old_pos)
-        # List of track_c Keys
-        list_tck = list(self.track_c.keys())
-
-        # if old_pos_clockwise:
-        #    stp = -1
-        # else:
-        #    stp = 1
-        if i_old_pos + 1 > len(list_tck) - 1:
-            new_pos_prediction = list_tck[0]
-        else:
-            new_pos_prediction = list_tck[i_old_pos + 1]
-
-        if self.compare_pos_loc_with_str(piece, location, new_pos_prediction):
-            new_pos = new_pos_prediction
-        else:
-            new_pos = ""
-            for i in range(i_old_pos + 1, len(list_tck)):
-                pos = list_tck[i]
-                if self.compare_pos_loc_with_str(piece, location, pos):
-                    new_pos = pos
-            if new_pos == "":
-                for i in range(i_old_pos - 1):
-                    pos = list_tck[i]
-                    if self.compare_pos_loc_with_str(piece, location, pos):
-                        new_pos = pos
-
-        if new_pos != "":
-            self.remove_car_from_track_c(car_addr)
-            self.track_c[new_pos] = car_addr
-            return new_pos
-        else:
-            return old_pos
+    
 
     def get_car_pos_in_track_c(self, car_addr):
         for pos in list(self.track_c.keys()):

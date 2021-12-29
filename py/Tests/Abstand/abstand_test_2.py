@@ -13,6 +13,7 @@ from functions.drive_to_start import drive_to_start
 from functions.drive_to_most_left_lane import drive_to_most_left_lane
 from Car_Logger.Car_Logger_Scan import scan_track
 from Car_Logger.Car_Logger_distance import Car_Logger_distance
+from Car_Logger.Car_Logger_distance import setup_and_start_Car_Logger as setup_and_start_Car_Logger_Dist
 
 
 cars = {}
@@ -42,17 +43,15 @@ if __name__ == "__main__":
     drive_to_most_left_lane(car1)
     drive_to_start(car1)
 
-    logging.info("Scanning track")
+    #logging.info("Scanning track")
     track_c = scan_track(car1)
 
     logging.info(str(track_c))
 
     time.sleep(1)
 
-    car1_logger = Car_Logger_distance(kwargs={'car': car1})
-    car2_logger = Car_Logger_distance(kwargs={'car': car2})
-    car1_logger.start()
-    car2_logger.start()
+    car1_logger = setup_and_start_Car_Logger_Dist(car1, cars, track_c)
+    car2_logger = setup_and_start_Car_Logger_Dist(car2, cars, track_c)
     logging.info("Started Threads for Car_Loggers")
 
     logging.info("Accel Cars")

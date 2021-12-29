@@ -25,11 +25,11 @@ class Car_Logger(Thread):
         self.clockwise = clockwise
 
 
-def drive_to_start(car):
+def drive_to_start(car, speed=500):
     car_l = Car_Logger(kwargs={'car': car})
     car_l.start()
 
-    car.changeSpeed(600, 1000)
+    car.changeSpeed(speed, 1000)
 
     while(car_l.piece != 34):
         pass

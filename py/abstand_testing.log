@@ -1,0 +1,31 @@
+14:59:48: Connected to Vehicle: "D9:A6:FA:EB:FC:01"
+14:59:49: Connected to Vehicle: "EC:33:B4:DB:9E:C8"
+15:00:10: Started Car_Logger_Scan-Thread for Car: D9:A6:FA:EB:FC:01
+15:00:11: Piece: 33, Location: 0,Clockwise: False
+15:00:11: Piece: 10, Location: 12,Clockwise: False
+15:00:12: Piece: 20, Location: 0,Clockwise: False
+15:00:13: Piece: 20, Location: 1,Clockwise: False
+15:00:13: Piece: 18, Location: 0,Clockwise: False
+15:00:14: Piece: 18, Location: 1,Clockwise: False
+15:00:14: Piece: 18, Location: 1,Clockwise: False
+15:00:15: Piece: 10, Location: 8,Clockwise: False
+15:00:16: Piece: 18, Location: 37,Clockwise: True
+15:00:17: Piece: 18, Location: 36,Clockwise: True
+15:00:17: Piece: 18, Location: 35,Clockwise: True
+15:00:18: Piece: 40, Location: 47,Clockwise: True
+15:00:18: Piece: 40, Location: 46,Clockwise: True
+15:00:18: Piece: 40, Location: 45,Clockwise: True
+15:00:19: Piece: 17, Location: 37,Clockwise: True
+15:00:19: Piece: 17, Location: 36,Clockwise: True
+15:00:20: Piece: 17, Location: 35,Clockwise: True
+15:00:20: Piece: 17, Location: 37,Clockwise: True
+15:00:21: Piece: 17, Location: 36,Clockwise: True
+15:00:21: Piece: 17, Location: 35,Clockwise: True
+15:00:22: Piece: 34, Location: 0,Clockwise: False
+15:00:22: Piece: 34, Location: 1,Clockwise: False
+15:00:23: Stopped Car_Logger for Car: D9:A6:FA:EB:FC:01
+15:00:23: {'003300': None, '011012': None, '022000': None, '022001': None, '031800': None, '031801': None, '041801': None, '051008': None, '061837': None, '061836': None, '061835': None, '074047': None, '074046': None, '074045': None, '081737': None, '081736': None, '081735': None, '091737': None, '091736': None, '091735': None, '103400': None}
+15:00:24: Started Car_Logger_distanc-Thread for Car: D9:A6:FA:EB:FC:01
+15:00:24: Started Car_Logger_distanc-Thread for Car: EC:33:B4:DB:9E:C8
+15:00:24: Started Threads for Car_Loggers
+15:00:24: Accel Cars

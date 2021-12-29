@@ -1,5 +1,6 @@
 from threading import Thread
 import logging
+import time
 
 from functions.drive_to_most_left_lane import drive_to_most_left_lane
 from functions.drive_to_start import drive_to_start
@@ -11,7 +12,8 @@ class Car_Logger_Scan(Thread):
     clockwise = False
     
     def run(self):
-        super().run(self)
+        self.car = self._kwargs['car']
+        self.car.setLocationChangeCallback(self.locationChangeCallback)
         self.track_ids = []
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
@@ -27,13 +29,14 @@ class Car_Logger_Scan(Thread):
 def setup_and_start_Car_Logger(car):
     c_l = Car_Logger_Scan(kwargs={'car': car})
     c_l.start()
-    logging.info("Started Car_Logger_distanc-Thread for Car: {0}".format(car.addr))
+    logging.info("Started Car_Logger_Scan-Thread for Car: {0}".format(car.addr))
     return c_l
 
 def stop_and_cleanup_Car_Logger(car_Logger):
     car_Logger.join()
-    del car_Logger
     logging.info("Stopped Car_Logger for Car: {0}".format(car_Logger.car.addr))
+    del car_Logger
+    
 
 def track_to_dict(track):
     global track_c_direction
@@ -54,17 +57,21 @@ def track_to_dict(track):
         prev_loc = l[1]
     return track_dict
 
-def scan_track(car):
+def scan_track(car, speed=400):
     # Position Car properly to start scan
     drive_to_most_left_lane(car)
     drive_to_start(car)
 
-    car_logger = setup_and_start_Car_Logger(kwargs={'car': car})
+    car_logger = setup_and_start_Car_Logger(car)
 
-    while (car_logger.piece != 34 and len(car_logger.track_ids)<4):
+    car.changeSpeed(speed, 1000)
+
+    while (car_logger.piece != 34):
         pass
-
+    
+    car.changeSpeed(0, 1000)    
     track = track_to_dict(car_logger.track_ids)
+    time.sleep(1)
     stop_and_cleanup_Car_Logger(car_logger)
 
     return track
