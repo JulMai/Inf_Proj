@@ -1,14 +1,42 @@
+from threading import Lock
+from Vehicle.vehicle import Vehicle
 
-
-class Queue():
-
-    def __init__(self):
-        self.prio_queue = []
-
-    def add(self, item, priority):
-        for i in self.prio_queue:
-            if i[0] == item:
-                pass
+class PriorityQueue():
+    
+    def __init__(self, items):
+        self.lock = Lock()
+        self.queue = []
+        self.items_to_queue(items)
         
 
+    def add(self, item, priority):
+        with self.lock:
+            for i in range(len(self.queue)):
+                if self.queue[i][0] == item:
+                    self.queue.remove(i)                    
+            self.queue.append((item, priority))
+    
+    def sort(self):
+        pass
 
+    def items_to_queue(self, items):
+        return {
+            "Dictionary": self.dict_to_queue(items),
+            #"List": self.list_to_queue(items),
+        }.get(type(items))
+
+    def dict_to_queue(self, items):
+        q = []
+        for i in items:
+            self.add(i, items[i])
+
+    def list_to_queue(self, items):
+        pass
+
+
+if __name__ == "__main__":
+    car1 = Vehicle("EC:33:B4:DB:9E:C8")
+    car2 = Vehicle("D9:A6:FA:EB:FC:01")
+    pq = PriorityQueue({car1: car1.dist_to_intersection, car2: car2.dist_to_intersection})
+    pq.add(car1, 3)
+    print("")
