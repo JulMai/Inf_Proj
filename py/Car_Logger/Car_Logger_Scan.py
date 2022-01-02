@@ -69,9 +69,40 @@ def scan_track(car, speed=400):
     while (car_logger.piece != 34):
         pass
     
-    car.changeSpeed(0, 1000)    
-    track = track_to_dict(car_logger.track_ids)
+    car.changeSpeed(0, 1000)
+    track = car_logger.track_ids
+
+    has_33 = False
+    has_34_0 = False
+    has_34_1 = False
+
+    for loc in track:
+        if loc[0] == 33:
+            has_33 = True
+        if loc[0] == 34:
+            if loc[1] == 0:
+                has_34_0 = True
+            if loc[1] == 1:
+                has_34_1 = True
+            
+    if not has_33:
+        track = track.reverse()
+        track.append((33, 0, False))
+        track = track.reverse()
+    
+    if not has_34_0:
+        if has_34_1:
+            last = track.pop()
+            track.append((34, 0, False))
+            track.append(last)
+        else:
+            track.append((34, 0, False))
+            track.append((34, 1, False))
+
+    track = track_to_dict(track)
     time.sleep(1)
     stop_and_cleanup_Car_Logger(car_logger)
+
+
 
     return track

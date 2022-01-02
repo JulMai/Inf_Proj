@@ -1,31 +1,212 @@
-14:59:48: Connected to Vehicle: "D9:A6:FA:EB:FC:01"
-14:59:49: Connected to Vehicle: "EC:33:B4:DB:9E:C8"
-15:00:10: Started Car_Logger_Scan-Thread for Car: D9:A6:FA:EB:FC:01
-15:00:11: Piece: 33, Location: 0,Clockwise: False
-15:00:11: Piece: 10, Location: 12,Clockwise: False
-15:00:12: Piece: 20, Location: 0,Clockwise: False
-15:00:13: Piece: 20, Location: 1,Clockwise: False
-15:00:13: Piece: 18, Location: 0,Clockwise: False
-15:00:14: Piece: 18, Location: 1,Clockwise: False
-15:00:14: Piece: 18, Location: 1,Clockwise: False
-15:00:15: Piece: 10, Location: 8,Clockwise: False
-15:00:16: Piece: 18, Location: 37,Clockwise: True
-15:00:17: Piece: 18, Location: 36,Clockwise: True
-15:00:17: Piece: 18, Location: 35,Clockwise: True
-15:00:18: Piece: 40, Location: 47,Clockwise: True
-15:00:18: Piece: 40, Location: 46,Clockwise: True
-15:00:18: Piece: 40, Location: 45,Clockwise: True
-15:00:19: Piece: 17, Location: 37,Clockwise: True
-15:00:19: Piece: 17, Location: 36,Clockwise: True
-15:00:20: Piece: 17, Location: 35,Clockwise: True
-15:00:20: Piece: 17, Location: 37,Clockwise: True
-15:00:21: Piece: 17, Location: 36,Clockwise: True
-15:00:21: Piece: 17, Location: 35,Clockwise: True
-15:00:22: Piece: 34, Location: 0,Clockwise: False
-15:00:22: Piece: 34, Location: 1,Clockwise: False
-15:00:23: Stopped Car_Logger for Car: D9:A6:FA:EB:FC:01
-15:00:23: {'003300': None, '011012': None, '022000': None, '022001': None, '031800': None, '031801': None, '041801': None, '051008': None, '061837': None, '061836': None, '061835': None, '074047': None, '074046': None, '074045': None, '081737': None, '081736': None, '081735': None, '091737': None, '091736': None, '091735': None, '103400': None}
-15:00:24: Started Car_Logger_distanc-Thread for Car: D9:A6:FA:EB:FC:01
-15:00:24: Started Car_Logger_distanc-Thread for Car: EC:33:B4:DB:9E:C8
-15:00:24: Started Threads for Car_Loggers
-15:00:24: Accel Cars
+14:31:51: Connected to Vehicle: "D9:A6:FA:EB:FC:01"
+14:31:52: Connected to Vehicle: "EC:33:B4:DB:9E:C8"
+14:31:54: Connected to Vehicle: "C8:1C:54:E9:9B:2C"
+14:31:57: Started Car_Logger_Scan-Thread for Car: D9:A6:FA:EB:FC:01
+14:31:57: Piece: 33, Location: 0,Clockwise: False
+14:31:57: Piece: 20, Location: 0,Clockwise: False
+14:31:58: Piece: 20, Location: 1,Clockwise: False
+14:31:58: Piece: 17, Location: 0,Clockwise: False
+14:31:59: Piece: 17, Location: 1,Clockwise: False
+14:31:59: Piece: 40, Location: 47,Clockwise: True
+14:32:00: Piece: 40, Location: 46,Clockwise: True
+14:32:00: Piece: 40, Location: 45,Clockwise: True
+14:32:00: Piece: 18, Location: 0,Clockwise: False
+14:32:01: Piece: 18, Location: 1,Clockwise: False
+14:32:01: Piece: 18, Location: 0,Clockwise: False
+14:32:02: Piece: 18, Location: 1,Clockwise: False
+14:32:03: Piece: 34, Location: 1,Clockwise: False
+14:32:04: Stopped Car_Logger for Car: D9:A6:FA:EB:FC:01
+14:32:04: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:11: Started Car_Logger_distanc-Thread for Car: D9:A6:FA:EB:FC:01
+14:32:11: Started Car_Logger_distanc-Thread for Car: EC:33:B4:DB:9E:C8
+14:32:11: Started Car_Logger_distanc-Thread for Car: C8:1C:54:E9:9B:2C
+14:32:11: Started Threads for Car_Loggers
+14:32:11: Accel Cars
+14:32:11: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:11: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:12: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:12: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:12: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:12: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:12: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:12: Car EC:33:B4:DB:9E:C8: (too close) Change Speed to 231; Abstand_Ist: 1; Faktor: 0.6
+14:32:12: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': None, '034046': None, '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:13: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': None, '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:13: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': None, '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': 'C8:1C:54:E9:9B:2C', '053401': None}
+14:32:13: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': None, '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': 'C8:1C:54:E9:9B:2C', '053401': None}
+14:32:13: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': 'C8:1C:54:E9:9B:2C', '053401': None}
+14:32:13: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': 'C8:1C:54:E9:9B:2C'}
+14:32:14: Car EC:33:B4:DB:9E:C8: kein Auto voraus; Change speed to 400
+14:32:14: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': 'C8:1C:54:E9:9B:2C'}
+14:32:14: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:14: {'003300': 'C8:1C:54:E9:9B:2C', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:14: {'003300': 'C8:1C:54:E9:9B:2C', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': 'EC:33:B4:DB:9E:C8', '053400': None, '053401': None}
+14:32:14: {'003300': 'C8:1C:54:E9:9B:2C', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:14: {'003300': None, '012000': 'C8:1C:54:E9:9B:2C', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:15: {'003300': None, '012000': 'C8:1C:54:E9:9B:2C', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:15: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:15: {'003300': None, '012000': 'C8:1C:54:E9:9B:2C', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:15: {'003300': None, '012000': None, '012001': 'C8:1C:54:E9:9B:2C', '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:15: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:15: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': 'C8:1C:54:E9:9B:2C', '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': None}
+14:32:15: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:15: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': None}
+14:32:16: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:16: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:16: {'003300': None, '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:16: Car EC:33:B4:DB:9E:C8: kein Auto voraus; Change speed to 400
+14:32:16: {'003300': None, '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:16: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:16: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:16: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:16: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:17: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:17: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:17: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:17: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:18: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:18: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:18: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:18: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:18: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:18: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:18: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:18: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:19: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': None, '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:19: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:19: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:19: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:19: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:19: Car EC:33:B4:DB:9E:C8: (too close) Change Speed to 207; Abstand_Ist: 1; Faktor: 0.6
+14:32:19: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:19: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 207
+14:32:20: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': 'C8:1C:54:E9:9B:2C', '053401': None}
+14:32:20: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': 'C8:1C:54:E9:9B:2C'}
+14:32:21: {'003300': 'C8:1C:54:E9:9B:2C', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:21: {'003300': None, '012000': 'C8:1C:54:E9:9B:2C', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:22: {'003300': None, '012000': None, '012001': 'C8:1C:54:E9:9B:2C', '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:22: {'003300': None, '012000': None, '012001': 'C8:1C:54:E9:9B:2C', '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:22: Car EC:33:B4:DB:9E:C8: kein Auto voraus; Change speed to 400
+14:32:22: {'003300': None, '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:23: {'003300': None, '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:23: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:23: Car C8:1C:54:E9:9B:2C: Abstand: wie gewünscht; Change speed to 207
+14:32:23: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:24: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:24: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:24: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:24: Car C8:1C:54:E9:9B:2C: kein Auto voraus; Change speed to 350
+14:32:24: {'003300': None, '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:24: {'003300': None, '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:24: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:24: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:24: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:25: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:25: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:25: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:26: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:26: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:26: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': None, '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:26: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:27: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:27: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:27: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': None, '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:27: Car EC:33:B4:DB:9E:C8: (too close) Change Speed to 205; Abstand_Ist: 1; Faktor: 0.6
+14:32:27: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:27: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 205
+14:32:27: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': 'C8:1C:54:E9:9B:2C', '053401': None}
+14:32:28: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': 'C8:1C:54:E9:9B:2C'}
+14:32:28: {'003300': 'C8:1C:54:E9:9B:2C', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:29: {'003300': None, '012000': 'C8:1C:54:E9:9B:2C', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:29: {'003300': None, '012000': None, '012001': 'C8:1C:54:E9:9B:2C', '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:30: {'003300': None, '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': 'EC:33:B4:DB:9E:C8', '041801': None, '053400': None, '053401': None}
+14:32:30: {'003300': None, '012000': None, '012001': None, '021700': 'C8:1C:54:E9:9B:2C', '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:30: Car EC:33:B4:DB:9E:C8: kein Auto voraus; Change speed to 400
+14:32:30: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:30: Car C8:1C:54:E9:9B:2C: Abstand: wie gewünscht; Change speed to 205
+14:32:31: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:31: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': 'C8:1C:54:E9:9B:2C', '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:31: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:31: Car C8:1C:54:E9:9B:2C: (too close) Change Speed to 191; Abstand_Ist: 2; Faktor: 0.8523719014285829
+14:32:31: {'003300': None, '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:32: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': 'C8:1C:54:E9:9B:2C', '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:32: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:32: Car C8:1C:54:E9:9B:2C: (too close) Change Speed to 110; Abstand_Ist: 1; Faktor: 0.6
+14:32:32: {'003300': None, '012000': None, '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:32: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:32: {'003300': None, '012000': None, '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:33: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': 'EC:33:B4:DB:9E:C8', '021701': None, '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:33: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:33: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 110
+14:32:33: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:33: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': 'C8:1C:54:E9:9B:2C', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:33: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:33: Car C8:1C:54:E9:9B:2C: kein Auto voraus; Change speed to 350
+14:32:34: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': 'EC:33:B4:DB:9E:C8', '034047': None, '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:34: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 110
+14:32:34: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:34: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:34: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': 'C8:1C:54:E9:9B:2C', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:34: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:34: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:34: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': 'C8:1C:54:E9:9B:2C', '041801': None, '053400': None, '053401': None}
+14:32:34: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:35: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': 'D9:A6:FA:EB:FC:01', '034047': None, '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:35: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:35: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:35: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': None, '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:35: Car EC:33:B4:DB:9E:C8: Abstand: wie gewünscht; Change speed to 350
+14:32:35: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:35: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 350
+14:32:36: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': 'C8:1C:54:E9:9B:2C', '053400': None, '053401': None}
+14:32:36: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:36: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': 'EC:33:B4:DB:9E:C8', '053400': None, '053401': None}
+14:32:36: Car EC:33:B4:DB:9E:C8: kein Auto voraus; Change speed to 400
+14:32:36: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': 'D9:A6:FA:EB:FC:01', '041801': 'EC:33:B4:DB:9E:C8', '053400': None, '053401': None}
+14:32:36: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:37: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': None}
+14:32:37: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:37: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'EC:33:B4:DB:9E:C8', '053400': None, '053401': None}
+14:32:37: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': 'D9:A6:FA:EB:FC:01', '041801': 'EC:33:B4:DB:9E:C8', '053400': None, '053401': None}
+14:32:37: Car D9:A6:FA:EB:FC:01: Abstand: wie gewünscht; Change speed to 400
+14:32:37: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': None, '053401': None}
+14:32:37: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:37: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': 'D9:A6:FA:EB:FC:01', '053400': 'EC:33:B4:DB:9E:C8', '053401': None}
+14:32:38: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': None}
+14:32:38: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': 'D9:A6:FA:EB:FC:01', '053401': 'EC:33:B4:DB:9E:C8'}
+14:32:38: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:38: {'003300': 'EC:33:B4:DB:9E:C8', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': 'D9:A6:FA:EB:FC:01'}
+14:32:38: {'003300': 'D9:A6:FA:EB:FC:01', '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: {'003300': 'D9:A6:FA:EB:FC:01', '012000': 'EC:33:B4:DB:9E:C8', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: Car C8:1C:54:E9:9B:2C: (too close) Change Speed to 204; Abstand_Ist: 1; Faktor: 0.6
+14:32:39: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: {'003300': None, '012000': 'D9:A6:FA:EB:FC:01', '012001': 'EC:33:B4:DB:9E:C8', '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: {'003300': None, '012000': None, '012001': 'D9:A6:FA:EB:FC:01', '021700': None, '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': None, '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:39: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500
+14:32:40: {'003300': None, '012000': None, '012001': None, '021700': 'D9:A6:FA:EB:FC:01', '021701': None, '034047': 'EC:33:B4:DB:9E:C8', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:40: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': None, '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:40: Car C8:1C:54:E9:9B:2C: kein Auto voraus; Change speed to 350
+14:32:41: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': 'D9:A6:FA:EB:FC:01', '034046': 'EC:33:B4:DB:9E:C8', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:41: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': None, '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:41: Stop Cars And wait
+14:32:41: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': 'D9:A6:FA:EB:FC:01', '034045': 'EC:33:B4:DB:9E:C8', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:41: {'003300': None, '012000': None, '012001': None, '021700': None, '021701': None, '034047': None, '034046': None, '034045': 'D9:A6:FA:EB:FC:01', '041800': None, '041801': None, '053400': None, '053401': None}
+14:32:41: Car D9:A6:FA:EB:FC:01: kein Auto voraus; Change speed to 500

@@ -17,6 +17,8 @@ def scan_track_with_lanes(car, speed=500):
 
     track_t = car_logger.track_ids
 
+
+
     cls.stop_and_cleanup_Car_Logger(car_logger)
 
     return track_t

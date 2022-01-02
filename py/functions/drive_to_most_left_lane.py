@@ -40,7 +40,7 @@ class Car_Logger(Thread):
 def drive_to_most_left_lane(car):
     car_logger = Car_Logger(kwargs={'car': car})
     car_logger.start()
-    speed = 400
+    speed = 300
     car.changeSpeed(speed, 1000)
 
     while car_logger.left_lane == False:

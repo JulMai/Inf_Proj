@@ -32,6 +32,7 @@ class Vehicle(Overdrive):
         self.offset = 0  # !not final, waiting for validation
         self.piecePrev = 0  # !not final, waiting for validation
         self.abstand = 0
+        self.dist_to_intersection = 0
         # Setter function !not final, only for testing
         #self._locationChangeCallbackFunc = lambda location, piece, offset, speed, clockwiseVal: self.location=location, self.piece=piece, self.offset=offset, self.speed=speed
         self._locationChangeCallbackFunc = None
