@@ -39,7 +39,6 @@ def stop_and_cleanup_Car_Logger(car_Logger):
     
 
 def track_to_dict(track):
-    global track_c_direction
     track_dict = {}
     prev_piece = 0
     prev_loc = 0
@@ -90,12 +89,12 @@ def scan_track(car, speed=400):
         track.append((33, 0, False))
         track = track.reverse()
     
-    if not has_34_0:
-        if has_34_1:
+    if not(has_34_0 and has_34_1):
+        if not has_34_0 and has_34_1:
             last = track.pop()
             track.append((34, 0, False))
             track.append(last)
-        else:
+        elif not has_34_0 and not has_34_1:
             track.append((34, 0, False))
             track.append((34, 1, False))
 

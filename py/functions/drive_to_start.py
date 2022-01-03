@@ -1,4 +1,4 @@
-from Tests.vehicle.vehicle import Vehicle
+from Vehicle.vehicle import Vehicle
 from threading import Thread
 import os
 import time
