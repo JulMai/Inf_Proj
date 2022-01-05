@@ -34,12 +34,12 @@ if __name__ == "__main__":
     #car1 = Vehicle("D9:A6:FA:EB:FC:01")
     car1 = Vehicle("C8:1C:54:E9:9B:2C")
     logging.info("Connected to Vehicle: \"{0}\"".format(car1.addr))
-    car1.abstand = 2
-    car1.desired_speed = 600
+    car1.abstand = 3
+    car1.desired_speed = 500
 
     car2 = Vehicle("EC:33:B4:DB:9E:C8")
     logging.info("Connected to Vehicle: \"{0}\"".format(car2.addr))
-    car2.abstand = 2
+    car2.abstand = 3
     car2.desired_speed = 300
 
     cars = {car1.addr: car1, car2.addr: car2}
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     car1.changeSpeed(car1.desired_speed, 1000)
     car2.changeSpeed(car2.desired_speed, 1000)
 
-    time.sleep(60)
+    time.sleep(30)
 
     logging.info("Stop Cars And wait")
     car1.changeSpeed(0, 1000)

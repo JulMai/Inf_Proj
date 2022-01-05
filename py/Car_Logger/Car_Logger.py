@@ -1,4 +1,5 @@
 from threading import Thread
+import logging
 
 class Car_Logger(Thread):
     location = 0
@@ -16,3 +17,5 @@ class Car_Logger(Thread):
         self.car.piece = piece
         self.car.speed = speed
         self.car.clockwise = clockwise
+
+        logging.info("Piece: {0}, Location: {1},Clockwise: {2}".format(piece, location ,clockwise))

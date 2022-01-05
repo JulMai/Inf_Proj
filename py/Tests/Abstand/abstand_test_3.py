@@ -4,8 +4,6 @@ import logging
 import os
 import sys
 
-
-
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(os.path.dirname(currentdir))
 sys.path.append(parentdir)
@@ -29,17 +27,17 @@ if __name__ == "__main__":
     car1 = Vehicle("D9:A6:FA:EB:FC:01")
     #car1 = Vehicle("C8:1C:54:E9:9B:2C")
     logging.info("Connected to Vehicle: \"{0}\"".format(car1.addr))
-    car1.abstand = 1
+    car1.abstand = 2
     car1.desired_speed = 500
 
     car2 = Vehicle("EC:33:B4:DB:9E:C8")
     logging.info("Connected to Vehicle: \"{0}\"".format(car2.addr))
-    car2.abstand = 1
+    car2.abstand = 2
     car2.desired_speed = 400
 
     car3 = Vehicle("C8:1C:54:E9:9B:2C")
     logging.info("Connected to Vehicle: \"{0}\"".format(car3.addr))
-    car3.abstand = 1
+    car3.abstand = 2
     car3.desired_speed = 350
 
     cars = {car1.addr: car1, car2.addr: car2, car3.addr: car3}

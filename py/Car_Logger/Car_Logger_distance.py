@@ -40,43 +40,31 @@ class Car_Logger_distance(Thread):
 
         old_pos = self.get_car_pos_in_track_c(car_addr)
         i_old_pos = self.get_pos_index_in_track_c(old_pos)
-        #old_pos_clockwise = get_pos_clockwise(old_pos)
-        # List of track_c Keys
-        list_tck = list(track_c.keys())
 
-        # if old_pos_clockwise:
-        #    stp = -1
-        # else:
-        #    stp = 1
-        # if (i_old_pos + 1) > (len(list_tck) - 1):
-        #    new_pos_prediction = list_tck[0]
-        # else:
-        #    new_pos_prediction = list_tck[i_old_pos + 1]
-
-        # if self.compare_pos_loc_with_str(piece, location, new_pos_prediction):
-        #    new_pos = new_pos_prediction
-        # else:
-        new_pos = ""
-        for i in range(i_old_pos + 1, len(list_tck)):
-            pos = list_tck[i]
-            if self.compare_pos_loc_with_str(piece, location, pos):
-                new_pos = pos
-                break
-        if new_pos == "":
-            for i in range(i_old_pos - 1):
+        with self.lock:
+            # List of track_c Keys
+            list_tck = list(track_c.keys())
+            new_pos = ""
+            for i in range(i_old_pos + 1, len(list_tck)):
                 pos = list_tck[i]
                 if self.compare_pos_loc_with_str(piece, location, pos):
                     new_pos = pos
                     break
+            if new_pos == "":
+                for i in range(0, i_old_pos):
+                    pos = list_tck[i]
+                    if self.compare_pos_loc_with_str(piece, location, pos):
+                        new_pos = pos
+                        break
 
-        # with self.lock:
-        if new_pos != "":
-            if track_c[new_pos] == None:
-                self.remove_car_from_track_c(car_addr)
-                track_c[new_pos] = car_addr
-                logging.info(str(track_c))
-            else:
-                new_pos = ""
+        
+            if new_pos != "":
+                if track_c[new_pos] == None:
+                    self.remove_car_from_track_c(car_addr)
+                    track_c[new_pos] = car_addr
+                    logging.info(str(track_c))
+                else:
+                    new_pos = ""
 
         #logging.info("Lock released")
         if new_pos != "":
@@ -135,7 +123,7 @@ class Car_Logger_distance(Thread):
             # Abstand zu gering => langsamer werden
             c = 0.6
             faktor = (1 - c) * math.log(abstand_r, car.abstand) + c
-            new_speed = int(faktor * speed_before)
+            new_speed = int(max(faktor * speed_before, 200))
             logging.info("Car {0}: (too close) Change Speed to {1}; Abstand_Ist: {2}; Faktor: {3}".format(
                 car.addr, new_speed, abstand_r, faktor))
             return new_speed
