@@ -17,7 +17,12 @@ class Car_Logger_Scan(Thread):
         self.track_ids = []
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
-        logging.info("Piece: {0}, Location: {1},Clockwise: {2}".format(piece, location ,clockwise))
+        self.car.location = location
+        self.car.piece = piece
+        self.car.speed = speed
+        self.car.clockwise = clockwise
+
+        #logging.info("Piece: {0}, Location: {1},Clockwise: {2}".format(piece, location ,clockwise))
 
         self.track_ids.append((piece, location, clockwise))
 

@@ -2,7 +2,8 @@ import logging
 import math
 from threading import Thread
 
-from Car_Logger import Car_Logger
+#from Car_Logger import Car_Logger
+from intersection_handler import PriorityQueue
 
 
 class Car_Logger_distance(Thread):
@@ -15,9 +16,10 @@ class Car_Logger_distance(Thread):
         self.lock = self._kwargs['lock']
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
-        i = 0
-        j = 0
-        a = 0
+        self.car.location = location
+        self.car.piece = piece
+        self.car.speed = speed
+        self.car.clockwise = clockwise
 
         car_pos = self.add_car_to_track_c(
             self.track_c, piece, location, self.car.addr)
@@ -26,10 +28,11 @@ class Car_Logger_distance(Thread):
         abstand_r, car_ahead_speed = self.calc_distance_to_next_car(
             self.car, car_pos)
 
-        #self.handle_intersection(self.car, car_pos)
+        #self.handle_intersection(self.track_c, self.car, car_pos)
 
         new_speed = self.calc_new_speed(
             self.car, abstand_r, speed, car_ahead_speed)
+
         if new_speed:
             self.car.changeSpeed(new_speed, 1000)
 
@@ -57,7 +60,6 @@ class Car_Logger_distance(Thread):
                         new_pos = pos
                         break
 
-        
             if new_pos != "":
                 if track_c[new_pos] == None:
                     self.remove_car_from_track_c(car_addr)
@@ -99,12 +101,38 @@ class Car_Logger_distance(Thread):
             #logging.info("Car {0}: Distance {1} to {2}".format(car.addr, abstand_r, car_spots[j]))
         return abstand_r, car_ahead_speed
 
-    def handle_intersection(self, car, car_pos):
-        i = self.get_pos_index_in_track_c(car_pos)
-        track = list(self.track_c.keys())
-        for j in range(i + 1, i + 4):
-            if int(track[j][2:4]) == 10:
-                distance_intersection = j - i
+# +++ INTERSECTION +++
+
+    def handle_intersection(self, track_c, car, car_pos):
+        dist = self.calc_distance_to_intersection(track_c, car, car_pos)
+
+    def calc_distance_to_intersection(self, track_c, car, car_pos):
+        car_pos_i = self.get_pos_index_in_track_c(car_pos)
+        next_intersection_i = self.get_pos_index_next_intersection(track_c, car_pos_i)
+
+        if next_intersection_i is None:
+            return None
+
+        if next_intersection_i < car_pos_i:
+            return len(track_c) - car_pos_i + next_intersection_i
+        else:
+            return next_intersection_i - car_pos_i
+
+    def get_pos_index_next_intersection(self, track_c, car_pos_index):
+        list_tck = list(track_c.keys())
+
+        for i in range(car_pos_index, len(list_tck)):
+            if int(list_tck[i][2:4]) == 10:
+                return i
+
+        for i in range(car_pos_index - 1):
+            if int(list_tck[i][2:4]) == 10:
+                return i
+
+        return None
+
+# +++ INTERSECTION +++
+
 
     def calc_new_speed(self, car, abstand_r, speed_before, car_ahead_speed):
         if abstand_r > car.abstand:
