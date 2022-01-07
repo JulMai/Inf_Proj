@@ -14,6 +14,7 @@ class Car_Logger_distance(Thread):
         self.track_c = self._kwargs['track']
         self.cars = self._kwargs['cars']
         self.lock = self._kwargs['lock']
+        self.queue = self._kwargs['queue']
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
         self.car.location = location
@@ -28,13 +29,26 @@ class Car_Logger_distance(Thread):
         abstand_r, car_ahead_speed = self.calc_distance_to_next_car(
             self.car, car_pos)
 
-        #self.handle_intersection(self.track_c, self.car, car_pos)
+        new_speed_int, dist_to_intersection = self.handle_intersection(self.track_c, self.car, car_pos)
+        new_speed_car = self.calc_new_speed(self.car, abstand_r, speed, car_ahead_speed)
+        #if abstand_r > dist_to_intersection:
 
-        new_speed = self.calc_new_speed(
-            self.car, abstand_r, speed, car_ahead_speed)
+        if new_speed_int == None or new_speed_car == None:
+            if new_speed_int == None:
+                new_speed = new_speed_car
+            elif new_speed_car == None:
+                new_speed = new_speed_car
+            else:
+                new_speed = None
+        else:
+            new_speed = min(new_speed_int, new_speed_car)
+
+        #if not new_speed:
+            #new_speed = self.calc_new_speed(self.car, abstand_r, speed, car_ahead_speed)
 
         if new_speed:
             self.car.changeSpeed(new_speed, 1000)
+            logging.info("Car {0}: Change Speed to {1}".format(addr, new_speed))
 
     def add_car_to_track_c(self, track_c, piece, location, car_addr):
         i = 0
@@ -64,7 +78,7 @@ class Car_Logger_distance(Thread):
                 if track_c[new_pos] == None:
                     self.remove_car_from_track_c(car_addr)
                     track_c[new_pos] = car_addr
-                    logging.info(str(track_c))
+                    #logging.info(str(track_c))
                 else:
                     new_pos = ""
 
@@ -100,18 +114,35 @@ class Car_Logger_distance(Thread):
             pass
             #logging.info("Car {0}: Distance {1} to {2}".format(car.addr, abstand_r, car_spots[j]))
         return abstand_r, car_ahead_speed
+    
+    def get_next_pos(self, track_c, car_pos):
+        pass
 
 # +++ INTERSECTION +++
 
     def handle_intersection(self, track_c, car, car_pos):
         dist = self.calc_distance_to_intersection(track_c, car, car_pos)
+        prio = self.queue.add(self.car, dist)
+
+        if prio > 0:
+            if dist == 0 or dist == 1:
+                logging.info("Car {0}: wait on intersection".format(self.car.addr))
+                return 0, dist
+            else:
+                if dist < 5:
+                    return self.calc_new_speed_intersection_ahead(dist, car.speed), dist
+                else:
+                    return car.speed, dist
+        else:
+            return None, dist
+
 
     def calc_distance_to_intersection(self, track_c, car, car_pos):
         car_pos_i = self.get_pos_index_in_track_c(car_pos)
         next_intersection_i = self.get_pos_index_next_intersection(track_c, car_pos_i)
 
         if next_intersection_i is None:
-            return None
+            return 100
 
         if next_intersection_i < car_pos_i:
             return len(track_c) - car_pos_i + next_intersection_i
@@ -130,6 +161,20 @@ class Car_Logger_distance(Thread):
                 return i
 
         return None
+
+    def calc_new_speed_intersection_ahead(self, dist_to_intersection, speed):    
+        max_speed = speed
+        min_speed = 200
+        max_dist = 5
+        min_dist = 2
+        exp = 3
+
+        if dist_to_intersection == max_dist:
+            return speed
+        
+        a = (max_speed - min_speed) / pow(max_dist - 0.5 - min_dist, exp)
+        return int(a * pow(dist_to_intersection - min_dist, exp) + min_speed)
+        
 
 # +++ INTERSECTION +++
 
@@ -176,9 +221,9 @@ class Car_Logger_distance(Thread):
         return -1
 
 
-def setup_and_start_Car_Logger(car, cars, track, lock):
+def setup_and_start_Car_Logger(car, cars, track, lock, queue):
     c_l = Car_Logger_distance(
-        kwargs={'car': car, 'cars': cars, 'track': track, 'lock': lock})
+        kwargs={'car': car, 'cars': cars, 'track': track, 'lock': lock, 'queue': queue})
     c_l.start()
     logging.info(
         "Started Car_Logger_distanc-Thread for Car: {0}".format(car.addr))

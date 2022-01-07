@@ -1,9 +1,8 @@
-from threading import Lock, Thread
+from threading import Lock
 import time
 import logging
 import os
 import sys
-
 
 
 currentdir = os.path.dirname(os.path.realpath(__file__))
@@ -17,15 +16,15 @@ from functions.drive_to_most_left_lane_all_cars import drive_to_most_left_lane_a
 from Car_Logger.Car_Logger_Scan import scan_track
 from Car_Logger.Car_Logger_distance import Car_Logger_distance
 from Car_Logger.Car_Logger_distance import setup_and_start_Car_Logger as setup_and_start_Car_Logger_Dist
+from intersection_handler import PriorityQueue
 
-
-
-cars = {}
-track_c_direction = {}
 
 
 
 if __name__ == "__main__":
+
+    test_duration = 60
+
 
     format = "%(asctime)s: %(message)s"
     logging.basicConfig(filename="abstand_testing.log", filemode="w", format=format, level=logging.INFO,
@@ -34,15 +33,18 @@ if __name__ == "__main__":
     #car1 = Vehicle("D9:A6:FA:EB:FC:01")
     car1 = Vehicle("C8:1C:54:E9:9B:2C")
     logging.info("Connected to Vehicle: \"{0}\"".format(car1.addr))
-    car1.abstand = 3
+    car1.abstand = 2
     car1.desired_speed = 500
 
     car2 = Vehicle("EC:33:B4:DB:9E:C8")
     logging.info("Connected to Vehicle: \"{0}\"".format(car2.addr))
-    car2.abstand = 3
+    car2.abstand = 2
     car2.desired_speed = 300
 
     cars = {car1.addr: car1, car2.addr: car2}
+
+    lock = Lock()
+    queue = PriorityQueue(list(cars.values()))
 
     drive_to_most_left_lane(car1)    
     #drive_to_start(car1)
@@ -57,19 +59,17 @@ if __name__ == "__main__":
     drive_to_most_left_lane_all_cars(cars)
 
     #drive_to_most_left_lane(car2)
-    #drive_to_most_left_lane(car3)
+    #drive_to_most_left_lane(car3)    
 
-    lock = Lock()
-
-    car1_logger = setup_and_start_Car_Logger_Dist(car1, cars, track_c, lock)
-    car2_logger = setup_and_start_Car_Logger_Dist(car2, cars, track_c, lock)
+    car1_logger = setup_and_start_Car_Logger_Dist(car1, cars, track_c, lock, queue)
+    car2_logger = setup_and_start_Car_Logger_Dist(car2, cars, track_c, lock, queue)
     logging.info("Started Threads for Car_Loggers")
 
     logging.info("Accel Cars")
     car1.changeSpeed(car1.desired_speed, 1000)
     car2.changeSpeed(car2.desired_speed, 1000)
 
-    time.sleep(30)
+    time.sleep(test_duration)
 
     logging.info("Stop Cars And wait")
     car1.changeSpeed(0, 1000)
