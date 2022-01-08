@@ -23,7 +23,7 @@ from intersection_handler import PriorityQueue
 
 if __name__ == "__main__":
 
-    test_duration = 60
+    test_duration = 90
 
 
     format = "%(asctime)s: %(message)s"
@@ -34,12 +34,12 @@ if __name__ == "__main__":
     car1 = Vehicle("C8:1C:54:E9:9B:2C")
     logging.info("Connected to Vehicle: \"{0}\"".format(car1.addr))
     car1.abstand = 2
-    car1.desired_speed = 500
+    car1.desired_speed = 600
 
     car2 = Vehicle("EC:33:B4:DB:9E:C8")
     logging.info("Connected to Vehicle: \"{0}\"".format(car2.addr))
     car2.abstand = 2
-    car2.desired_speed = 300
+    car2.desired_speed = 400
 
     cars = {car1.addr: car1, car2.addr: car2}
 

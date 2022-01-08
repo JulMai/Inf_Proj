@@ -24,14 +24,17 @@ class Car_Logger(Thread):
         self.car.speed = speed
         self.car.clockwise = clockwise
 
-        lanes = get_TrackPiece(piece).coordinates
+        t_piece = get_TrackPiece(piece)
 
-        #print("piece: {0}, clockwise: {1}, location: {2}".format(piece, clockwise, location))
+        if not t_piece is None:
+            lanes = t_piece.coordinates
 
-        if not(clockwise == True and (location in lanes[len(lanes)-1])) and not(clockwise == False and (location in lanes[0])):
-            self.car.changeLaneLeft(speed, 1000)
-        else:
-            self.left_lane = True
+            #print("piece: {0}, clockwise: {1}, location: {2}".format(piece, clockwise, location))
+
+            if not(clockwise == True and (location in lanes[len(lanes)-1])) and not(clockwise == False and (location in lanes[0])):
+                self.car.changeLaneLeft(speed, 1000)
+            else:
+                self.left_lane = True
 
 def drive_to_most_left_lane_all_cars(cars, speed=300):
     car_loggers = {}

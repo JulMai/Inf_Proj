@@ -12,6 +12,9 @@ def calc_new_speed_intersection_ahead(dist_to_intersection, speed):
         return a * pow(dist_to_intersection - min_dist, exp) + min_speed
 
 
+
+
+
 if __name__ == '__main__':
     for i in range(2,6):
         print("{0} : {1}".format(i, calc_new_speed_intersection_ahead(i, 600)))

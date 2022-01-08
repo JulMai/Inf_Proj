@@ -15,6 +15,7 @@ from functions.drive_to_most_left_lane_all_cars import drive_to_most_left_lane_a
 from Car_Logger.Car_Logger_Scan import scan_track
 from Car_Logger.Car_Logger_distance import Car_Logger_distance
 from Car_Logger.Car_Logger_distance import setup_and_start_Car_Logger as setup_and_start_Car_Logger_Dist
+from intersection_handler import PriorityQueue
 
 
 cars = {}
@@ -59,10 +60,11 @@ if __name__ == "__main__":
     #drive_to_most_left_lane(car3)
 
     lock = Lock()
+    queue = PriorityQueue(list(cars.values()))
 
-    car1_logger = setup_and_start_Car_Logger_Dist(car1, cars, track_c, lock)
-    car2_logger = setup_and_start_Car_Logger_Dist(car2, cars, track_c, lock)
-    car3_logger = setup_and_start_Car_Logger_Dist(car3, cars, track_c, lock)
+    car1_logger = setup_and_start_Car_Logger_Dist(car1, cars, track_c, lock, queue)
+    car2_logger = setup_and_start_Car_Logger_Dist(car2, cars, track_c, lock, queue)
+    car3_logger = setup_and_start_Car_Logger_Dist(car3, cars, track_c, lock, queue)
     logging.info("Started Threads for Car_Loggers")
 
     logging.info("Accel Cars")
@@ -70,7 +72,7 @@ if __name__ == "__main__":
     car2.changeSpeed(car2.desired_speed, 1000)
     car3.changeSpeed(car3.desired_speed, 1000)
 
-    time.sleep(60)
+    time.sleep(300)
 
     logging.info("Stop Cars And wait")
     car1.changeSpeed(0, 1000)
