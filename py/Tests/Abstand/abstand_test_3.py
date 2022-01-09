@@ -72,14 +72,30 @@ if __name__ == "__main__":
     car2.changeSpeed(car2.desired_speed, 1000)
     car3.changeSpeed(car3.desired_speed, 1000)
 
-    time.sleep(300)
+    time.sleep(30)
+    import random
+
+    for i in range(5):
+        car1.desired_speed = random.randint(200, 500)
+        car2.desired_speed = random.randint(200, 500)
+        car3.desired_speed = random.randint(200, 500)
+        logging.info("Change desired speeds")
+        time.sleep(30)
+        car1.abstand = random.randint(2, 5)
+        car2.abstand = random.randint(2, 5)
+        car3.abstand = random.randint(2, 5)
+        logging.info("Change distances")
+        time.sleep(30)
 
     logging.info("Stop Cars And wait")
-    car1.changeSpeed(0, 1000)
+    car1.desired_speed = 0
+    car1.changeSpeed(car1.desired_speed, 1000)
     time.sleep(1)
-    car2.changeSpeed(0, 1000)
+    car2.desired_speed = 0
+    car2.changeSpeed(car2.desired_speed, 1000)
     time.sleep(1)
-    car3.changeSpeed(0, 1000)
+    car3.desired_speed = 0
+    car3.changeSpeed(car3.desired_speed, 1000)
     time.sleep(5)
 
     logging.info("Close Threads for Car_Loggers")
