@@ -4,7 +4,7 @@ import time
 
 from Vehicle.vehicle import Vehicle
 
-class PriorityQueue():    
+class PriorityQueue():
     def __init__(self, items):
         self.lock = Lock()
         self.queue = []
