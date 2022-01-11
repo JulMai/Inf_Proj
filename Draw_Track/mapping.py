@@ -10,12 +10,14 @@ from Draw_Track.dictostr import dictostr
 _path = str(pathlib.Path().resolve()) + "/Draw_Track/images/"
 
 _straight       = _path + "straight_v2.png"
-_curve          = _path + "curve_v2.png"           
+_right         = _path + "curve_right_v2.png"
+_left          = _path + "curve_left_v2.png"           
 _intersection   = _path + "intersection_v2.png"
 _startline      = _path + "start-end_v2.png"
 _track          = _path + "track.png"
 
 _cp = []
+_diclen = 0
 
 #default_track = ['start','left', 'left', 'straight', 'intersection', 'right', 'right', 'right', 'intersection', 'left']
 
@@ -41,9 +43,9 @@ def map_grid(dic):
         if track[i] == 'start':
             img = Image.open(_startline)
         elif track[i] == 'left':
-            img = Image.open(_curve)        #-90 = clockwise; 90 = counter-clockwise
+            img = Image.open(_left)        #-90 = clockwise; 90 = counter-clockwise
         elif track[i] == 'right':
-            img = Image.open(_curve).rotate(-90)
+            img = Image.open(_right).rotate(-90)
         elif track[i] == 'straight':
             img = Image.open(_straight)
         elif track[i] == 'intersection':
@@ -129,7 +131,7 @@ def checkpoints():
     point = cptrack[0]
 
 
-    while len(cptrack) < len(_cp) + 1:
+    while len(cptrack) < len(_cp)+1:
         pd = 100000000
         cp = []
         
@@ -149,15 +151,17 @@ def checkpoints():
                 point = a
         (cx, cy) = (p0x, p0y)
         (p0x, p0y) = point
+        if point == (startX, startY):
+            break
         cptrack.append(point)
     
     #visual control of the track
-    #i=0
-    #for all in cptrack:    
-    #    cv2.putText(image, str(i), all, cv2.FONT_HERSHEY_SIMPLEX,
-	#	0.5, (255, 255, 255), 2)
-    #    i+=1
-    #cv2.imshow("Image", image)
-    #cv2.waitKey(0)
+    i=0
+    for all in cptrack:    
+        cv2.putText(image, str(i), all, cv2.FONT_HERSHEY_SIMPLEX,
+		0.5, (255, 255, 255), 2)
+        i+=1
+    cv2.imshow("Image", image)
+    cv2.waitKey(0)
 
     return cptrack

@@ -3,7 +3,7 @@ import os
 from threading import Thread
 import logging
 
-from vehicle import Vehicle
+from Vehicle.vehicle import Vehicle
 from Track.trackPieceFactory import get_TrackPiece
 
 

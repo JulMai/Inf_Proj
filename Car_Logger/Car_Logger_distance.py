@@ -1,10 +1,12 @@
 import logging
 import math
 from threading import Thread
+import time
 
 #from Car_Logger import Car_Logger
-from intersection_handler import PriorityQueue
-
+from Simulations.first_come_first_serve.intersection_handler import PriorityQueue
+from functions.drive_to_most_left_lane import drive_to_most_left_lane
+from Track.trackPieceFactory import get_TrackPiece
 
 class Car_Logger_distance(Thread):
 
@@ -14,6 +16,10 @@ class Car_Logger_distance(Thread):
         self.track_c = self._kwargs['track']
         self.cars = self._kwargs['cars']
         self.lock = self._kwargs['lock']
+        self.queue = self._kwargs['queue']
+        
+        while True:
+            time.sleep(0.2)
 
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
         self.car.location = location
@@ -21,20 +27,38 @@ class Car_Logger_distance(Thread):
         self.car.speed = speed
         self.car.clockwise = clockwise
 
+        if not self.check_if_left_lane(piece, location, clockwise):
+            self.car.changeLaneLeft(speed, 1000)
+            return
+
         car_pos = self.add_car_to_track_c(
             self.track_c, piece, location, self.car.addr)
         #logging.info("Car {0}: Pos: {1}".format(self.car.addr, car_pos))
 
-        abstand_r, car_ahead_speed = self.calc_distance_to_next_car(
+        dist_to_next_car, car_ahead_speed = self.calc_distance_to_next_car(
             self.car, car_pos)
 
-        #self.handle_intersection(self.track_c, self.car, car_pos)
+        dist_to_intersection = self.calc_distance_to_intersection(
+            self.track_c, self.car, car_pos)
+        prio = self.queue.add(self.car, dist_to_intersection)
 
         new_speed = self.calc_new_speed(
-            self.car, abstand_r, speed, car_ahead_speed)
+            self.car, dist_to_next_car, speed, car_ahead_speed, dist_to_intersection, prio)
 
-        if new_speed:
-            self.car.changeSpeed(new_speed, 1000)
+        if not new_speed is None:
+            if new_speed == 0:
+                self.car.changeSpeed(int(new_speed), 1000)
+                while(self.queue.get_prio_of_item(self.car) > 0):
+                    time.sleep(0.1)
+                new_speed = self.car.desired_speed
+            self.car.changeSpeed(int(new_speed), 1000)            
+            logging.info("Car {0}: Change Speed to {1}".format(addr, new_speed))
+
+    def check_if_left_lane(self, piece, location, direction):
+        t_piece = get_TrackPiece(piece)
+        if not t_piece is None:
+            lanes = t_piece.coordinates
+        return not(not(direction == True and (location in lanes[len(lanes)-1])) and not(direction == False and (location in lanes[0])))
 
     def add_car_to_track_c(self, track_c, piece, location, car_addr):
         i = 0
@@ -64,7 +88,7 @@ class Car_Logger_distance(Thread):
                 if track_c[new_pos] == None:
                     self.remove_car_from_track_c(car_addr)
                     track_c[new_pos] = car_addr
-                    logging.info(str(track_c))
+                    # logging.info(str(track_c))
                 else:
                     new_pos = ""
 
@@ -78,40 +102,55 @@ class Car_Logger_distance(Thread):
         return int(pos_str[2:4]) == piece and int(pos_str[4:6]) == location
 
     def calc_distance_to_next_car(self, car, car_pos):
-        abstand_r = 100
+        dist_to_next_car = 100
         car_ahead_speed = 0
         i = self.get_pos_index_in_track_c(car_pos)
 
         car_spots = list(self.track_c.values())
-        for j in range(i + 1, min(len(self.track_c), i + car.abstand + 1)):
+        for j in range(i + 1, min(len(self.track_c), i + car.distance + 1)):
             if car_spots[j] != None and car_spots[j] != car.addr:
                 car_ahead_speed = self.cars[car_spots[j]].speed
-                abstand_r = j - i
+                dist_to_next_car = j - i
                 break
 
-        if abstand_r == 0 and car.abstand > (len(car_spots) - i):
+        if dist_to_next_car == 0 and car.distance > (len(car_spots) - i):
             k = (len(car_spots) - i)
-            for j in range(0, car.abstand + 1 - k):
+            for j in range(0, car.distance + 1 - k):
                 if car_spots[j] != None and car_spots[j] != car.addr:
                     car_ahead_speed = self.cars[car_spots[j]].speed
-                    abstand_r = j + k
+                    dist_to_next_car = j + k
                     break
-        if abstand_r != 100:
+        if dist_to_next_car != 100:
             pass
-            #logging.info("Car {0}: Distance {1} to {2}".format(car.addr, abstand_r, car_spots[j]))
-        return abstand_r, car_ahead_speed
+            # logging.info("Car {0}: Distance {1} to {2}".format(car.addr, dist_to_next_car  car_spots[j]))
+        return dist_to_next_car, car_ahead_speed
 
 # +++ INTERSECTION +++
 
     def handle_intersection(self, track_c, car, car_pos):
         dist = self.calc_distance_to_intersection(track_c, car, car_pos)
+        prio = self.queue.add(self.car, dist)
+
+        if prio > 0:
+            if dist == 0 or dist == 1:
+                logging.info(
+                    "Car {0}: wait on intersection".format(self.car.addr))
+                return 0, dist
+            else:
+                if dist < 5:
+                    return self.calc_new_speed_intersection_ahead(dist, car.speed), dist
+                else:
+                    return car.speed, dist
+        else:
+            return None, dist
 
     def calc_distance_to_intersection(self, track_c, car, car_pos):
         car_pos_i = self.get_pos_index_in_track_c(car_pos)
-        next_intersection_i = self.get_pos_index_next_intersection(track_c, car_pos_i)
+        next_intersection_i = self.get_pos_index_next_intersection(
+            track_c, car_pos_i)
 
         if next_intersection_i is None:
-            return None
+            return 100
 
         if next_intersection_i < car_pos_i:
             return len(track_c) - car_pos_i + next_intersection_i
@@ -131,29 +170,54 @@ class Car_Logger_distance(Thread):
 
         return None
 
+    def calc_new_speed_intersection_ahead(self, dist_to_intersection, speed):
+        max_speed = speed
+        min_speed = 200
+        max_dist = 5
+        min_dist = 2
+        exp = 3
+
+        if dist_to_intersection >= max_dist:
+            logging.info("Car {0}: keep speed".format(self.car.addr))
+            return self.car.desired_speed
+        elif dist_to_intersection < min_dist:
+            logging.info(
+                "Car {0}: Intersection close => stop".format(self.car.addr))
+            return 0
+        else:
+            logging.info(
+                "Car {0}: Intersection ahead => brake softly". format(self.car.addr))
+            #a = (max_speed - min_speed) / pow(max_dist - 0.5 - min_dist, exp)
+            #return int(a * pow(dist_to_intersection - min_dist, exp) + min_speed)
+            return int(max_speed * math.log(dist_to_intersection, 10) + min_speed)
+
 # +++ INTERSECTION +++
 
+    def calc_new_speed(self, car, dist_to_next_car, speed_before, car_ahead_speed, dist_to_intersection, prio):
+        if dist_to_intersection > dist_to_next_car:
+            return self.calc_speed_car_ahead(dist_to_next_car, car, speed_before, car_ahead_speed)
+        else:
+            if prio > 0:
+                return self.calc_new_speed_intersection_ahead(dist_to_intersection, speed_before)
+            else:
+                return self.calc_speed_car_ahead(dist_to_next_car, car, speed_before, car_ahead_speed)
 
-    def calc_new_speed(self, car, abstand_r, speed_before, car_ahead_speed):
-        if abstand_r > car.abstand:
-            # Abstand in Ordnung => gewünschte Geschwindigkeit
+    def calc_speed_car_ahead(self, dist_to_next_car, car, speed_before, car_ahead_speed):
+        if dist_to_next_car > car.distance:
+            # distance in Ordnung => gewünschte Geschwindigkeit
             if abs(1 - (speed_before/car.desired_speed)) > 0.1:
-                logging.info("Car {0}: kein Auto voraus; Change speed to {1}".format(
-                    car.addr, car.desired_speed))
+                logging.info("Car {0}: no car ahead".format(car.addr))
                 return car.desired_speed
-
-        if abstand_r == car.abstand:
-            logging.info("Car {0}: Abstand: wie gewünscht; Change speed to {1}".format(
-                car.addr, car_ahead_speed))
+        elif dist_to_next_car == car.distance:
+            logging.info("Car {0}: desired distance".format(car.addr))
             return car_ahead_speed
-
-        if abstand_r < car.abstand:
-            # Abstand zu gering => langsamer werden
+        elif dist_to_next_car < car.distance:
+            # distance zu gering => langsamer werden
             c = 0.6
-            faktor = (1 - c) * math.log(abstand_r, car.abstand) + c
+            faktor = (1 - c) * math.log(dist_to_next_car, car.distance) + c
             new_speed = int(max(faktor * speed_before, 200))
-            logging.info("Car {0}: (too close) Change Speed to {1}; Abstand_Ist: {2}; Faktor: {3}".format(
-                car.addr, new_speed, abstand_r, faktor))
+            logging.info("Car {0}: too close".format(
+                car.addr, new_speed, dist_to_next_car, faktor))
             return new_speed
 
     def remove_car_from_track_c(self, car):
@@ -176,9 +240,9 @@ class Car_Logger_distance(Thread):
         return -1
 
 
-def setup_and_start_Car_Logger(car, cars, track, lock):
+def setup_and_start_Car_Logger(car, cars, track, lock, queue):
     c_l = Car_Logger_distance(
-        kwargs={'car': car, 'cars': cars, 'track': track, 'lock': lock})
+        kwargs={'car': car, 'cars': cars, 'track': track, 'lock': lock, 'queue': queue})
     c_l.start()
     logging.info(
         "Started Car_Logger_distanc-Thread for Car: {0}".format(car.addr))
@@ -189,9 +253,3 @@ def stop_and_cleanup_Car_Logger(car_Logger):
     car_Logger.join()
     del car_Logger
     logging.info("Stopped Car_Logger for Car: {0}".format(car_Logger.car.addr))
-
-
-if __name__ == "__main__":
-    format = "%(asctime)s: %(message)s"
-    logging.basicConfig(filename="./logs/abstand_testing.log", filemode="w", format=format, level=logging.INFO,
-                        datefmt="%H:%M:%S")

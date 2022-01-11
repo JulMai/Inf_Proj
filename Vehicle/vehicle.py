@@ -1,4 +1,4 @@
-from overdrive import Overdrive
+from Vehicle.overdrive import Overdrive
 import struct
 import threading
 import queue
@@ -31,7 +31,7 @@ class Vehicle(Overdrive):
         self.direction = 0  # !not final, waiting for validation
         self.offset = 0  # !not final, waiting for validation
         self.piecePrev = 0  # !not final, waiting for validation
-        self.abstand = 0
+        self.distance = 2
         self.dist_to_intersection = 0
         # Setter function !not final, only for testing
         #self._locationChangeCallbackFunc = lambda location, piece, offset, speed, clockwiseVal: self.location=location, self.piece=piece, self.offset=offset, self.speed=speed
@@ -52,7 +52,9 @@ class Vehicle(Overdrive):
 
     def changeSpeed(self, speed, accel):
         speed = int(speed)
-        speed = max(min(speed, 500), 200)
+        speed = min(speed, 500)
+        if 1 < speed < 200:
+            speed = 200
         self.speed = speed
         self.acceleration = accel
         command = struct.pack("<BHHB", 0x24, speed, accel, 0x01)

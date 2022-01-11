@@ -1,7 +1,6 @@
 from tkinter import *
 from tkinter.ttk import*
 from coordinator import Coordinator
-import threading
 from tkinter.messagebox import askyesno
 import Draw_Track.mapping as mapping
 from threading import Thread
@@ -11,11 +10,12 @@ root = Tk()
 root.title("Anki-Overdrive-Project")
 # root.geometry("400x400")
 
+update = True
 
 class Gui:
 
     # Used to seperate the vehicles
-    colors = ["red", "blue", "red", "purple", "yellow"]
+    colors = ["red", "blue", "green", "purple", "yellow"]
     # radius for vehiclesCircles 
     radius = 10
     track_Coordinates = []
@@ -66,7 +66,7 @@ class Gui:
         self.startButton = Button(self.generalSettingsFrame,text="Start",command=self.startSimulation)
         self.startButton.grid(row=0,column=0)
         
-        self.stopButton = Button(self.generalSettingsFrame,text = "Stop", command=self.coordinator.stopSimulation)
+        self.stopButton = Button(self.generalSettingsFrame,text = "Stop", command=self.stopSimulation)
         self.stopButton.grid(row=0,column=2,padx=(0,20))
 
         for child in self.generalSettingsFrame.winfo_children():
@@ -90,9 +90,18 @@ class Gui:
         
 
     def startSimulation(self):
-        self.coordinator.vehicleList[0].speed = 500
-        print("Changed speed to 500")
-        #self.coordinator.startSimulation()
+        self.init_update()
+        self.coordinator.startSimulation()
+        
+
+    def stopSimulation(self):
+        global update
+        update = False
+        self.coordinator.stopSimulation()
+    
+    def init_update(self):
+        thread = Thread(target=updateVehicles, args=(self,))
+        thread.start()
         
 
     def scanTrack(self):
@@ -101,6 +110,7 @@ class Gui:
 
         # get scanned track list to create virtual map
         self.trackList_raw = self.coordinator.start_ScanTrack()
+        self.coordinator.trackList = self.trackList_raw
         
         mapping.map_grid(self.trackList_raw)
         self.list_canvas_checkpoints = mapping.checkpoints()
@@ -144,7 +154,7 @@ class Gui:
         labelDistance = Label(vehicleFrame, text="Distance")
         labelDistance.grid(row=2, column=0)
 
-        scaleDistance = Scale(vehicleFrame, from_=1, to=5, orient=HORIZONTAL)
+        scaleDistance = Scale(vehicleFrame, from_=2, to=5, orient=HORIZONTAL)
         scaleDistance.grid(row=2, column=1)
 
         labelBattery = Label(vehicleFrame, text="Battery")
@@ -204,40 +214,7 @@ class Gui:
                      x+self.radius, y+self.radius]
         self.mapCanvas.coords(circle, newCoords)
 
-    # Use with mac speed and x,y in canvas coordinates
-    def updateVehicles(self):
-        gui = self
-        speeds = {}
-        for v_c in gui.coordinator.vehicleList:
-            speeds[v_c.addr] = v_c.speed
-            
-        print(speeds)
-
-        for v in gui.vehicles:
-            vehicleMac = v["mac"]
-            # update ui display
-            frame = v["frame"]           
-            speed = speeds[vehicleMac]
-            frame["speed"].set(speed)
-            
-            positionIndex = 0
-
-            i = 0
-            for pos in gui.coordinator.trackList.keys():
-                if gui.coordinator.trackList[pos] == vehicleMac:
-                    positionIndex = i
-                    break
-                i += 1
-
-            #positionIndex = vehicleMac["position"]
-            #positionIndex +=1
-            #if positionIndex >len(self.list_canvas_checkpoints):
-            #    positionIndex=0
-            # update canvas
-            if len(gui.list_canvas_checkpoints) > 0:
-                gui.moveCircle(v["circle"], gui.list_canvas_checkpoints[positionIndex][0], gui.list_canvas_checkpoints[positionIndex][1])
-            #time.sleep(2)
-            root.after(500, self.updateVehicles())
+    
                 
 
     def sendValues(self):
@@ -249,8 +226,8 @@ class Gui:
             speed = ((vehicleFrame["speed"]).get())
             for ev in self.coordinator.vehicleList:
                 if ev.addr == vehicleMac:
-                    self.coordinator.setVehicleDistance(distance, vehicleMac)
-                    self.coordinator.setVehicleSpeed(newspeed, vehicleMac)
+                    self.coordinator.setVehicleDistance(int(distance), vehicleMac)
+                    self.coordinator.setVehicleSpeed(int(newspeed), vehicleMac)
         
 
     # This method gets called if there is an update of the vehicle values
@@ -269,8 +246,41 @@ class Gui:
         return
 
 
+# Use with mac speed and x,y in canvas coordinates
+def updateVehicles(gui):
+    global update
+    update = True
+    while update:
+        speeds = {}
+        for v_c in gui.coordinator.vehicleList:
+            speeds[v_c.addr] = v_c.speed
+
+        for v in gui.vehicles:
+            vehicleMac = v["mac"]
+            # update ui display
+            frame = v["frame"]           
+            speed = speeds[vehicleMac]
+            frame["speed"].set(speed)
+            
+            positionIndex = 0
+
+            i = 0
+            for pos in gui.coordinator.trackList.keys():
+                if gui.coordinator.trackList[pos] == vehicleMac:
+                    positionIndex = i - 1
+                    break
+                i += 1        
+
+        #positionIndex = vehicleMac["position"]
+        #positionIndex +=1
+        #if positionIndex >len(self.list_canvas_checkpoints):
+        #    positionIndex=0
+        # update canvas
+            if len(gui.list_canvas_checkpoints) > 0:
+                print("Position für Punkt zeichnen {0}, {1}".format(gui.list_canvas_checkpoints[positionIndex][0], gui.list_canvas_checkpoints[positionIndex][1]))
+                gui.moveCircle(v["circle"], gui.list_canvas_checkpoints[positionIndex][0], gui.list_canvas_checkpoints[positionIndex][1])
+        time.sleep(0.1)
+
 
 g = Gui(root)
-#g.updateVehicles()
-root.after(0, g.updateVehicles())
 root.mainloop()

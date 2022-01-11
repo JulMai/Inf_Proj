@@ -38,7 +38,7 @@ class Car_Logger(Thread):
 
 def drive_to_most_left_lane_all_cars(cars, speed=300):
     car_loggers = {}
-    for car in cars.values():
+    for car in cars:
         car_logger = Car_Logger(kwargs={'car': car})
         car_loggers[car.addr] = car_logger
         car_logger.start()
@@ -48,6 +48,6 @@ def drive_to_most_left_lane_all_cars(cars, speed=300):
     while not all(car_logger.left_lane == True for car_logger in car_loggers.values()):
         pass
 
-    for car in cars.values():
+    for car in cars:
         car.changeSpeed(0, 1000)
         car_loggers[car.addr].join()

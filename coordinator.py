@@ -1,5 +1,9 @@
-from vehicle import Vehicle
+
+from Vehicle.vehicle import Vehicle
 from Car_Logger.Car_Logger_Scan import scan_track
+
+from Simulations.first_come_first_serve import sim_mode0
+from Car_Logger.Car_Logger_distance import setup_and_start_Car_Logger as setup_and_start_Car_Logger_Dist
 
 # class for simulation logic and communication between gui and vehicles
 class Coordinator:
@@ -18,15 +22,19 @@ class Coordinator:
         self.vehicleList.append(Vehicle(macAddress))
 
     # This method starts the simulation and lets the vehicles drive with the current mode
-    def startSimulation(self):
-        
-        return
+    def startSimulation(self, mode=0):
+        self.currentMode = {
+            0: sim_mode0.startSim(self.vehicleList, self.trackList)
+        }.get(mode)
 
     # This method stops the simulation and disconnects the vehicles from the server
     def stopSimulation(self):
-        for v in self.vehicleList:
-            v.disconnect()
-        return
+        {
+            0: sim_mode0.stopSim(self.vehicleList)
+        }.get(self.currentMode)
+        #for v in self.vehicleList:
+        #    v.disconnect()
+        
 
     # This method sets the simulation mode that the vehicles must follow
     def setMode(self, mode):
