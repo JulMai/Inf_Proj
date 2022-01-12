@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter.ttk import*
 import threading
 from tkinter.messagebox import askyesno
-import mapping as mp
+import Draw_Track.mapping as mp
 root = Tk()
 root.title("Anki-Overdrive-Project")
 #root.geometry("400x400")

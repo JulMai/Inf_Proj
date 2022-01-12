@@ -94,7 +94,7 @@ def checkpoints():
                     cv2.CHAIN_APPROX_SIMPLE)[-2]
   
     # filter by area
-    s1 = 3
+    s1 = 1
     s2 = 300
     xcnts = []
     for cnt in cnts:
@@ -139,29 +139,32 @@ def checkpoints():
             px = p0x 
             py = p0y - 50
         else:                                   #calculate prediction point with the help of a vector from the last to the current point
-            px = 2*p0x - cx
-            py = 2*p0y - cy
-
+            px = p0x+min((p0x - cx), 70)
+            py = p0y+min((p0y - cy), 70)
+        #print(p0x-cx, p0y-cy)
+        #cv2.circle(image, (px, py), 5, (25,25,25), 3)
         for a in _cp:                           #search closest point in the list of points 
             (p1x, p1y) = a
-            dist1 = round(math.hypot(p1x - px, p1y - py))
+            dist1 = round(math.hypot((p1x - px), (p1y - py)))
             if pd > dist1 and a != cptrack[len(cptrack)-1]:     
                 pd = dist1
-                #print(pd)
+                
                 point = a
         (cx, cy) = (p0x, p0y)
         (p0x, p0y) = point
         if point == (startX, startY):
             break
         cptrack.append(point)
+        
+
     
     #visual control of the track
-    i=0
-    for all in cptrack:    
-        cv2.putText(image, str(i), all, cv2.FONT_HERSHEY_SIMPLEX,
-		0.5, (255, 255, 255), 2)
-        i+=1
-    cv2.imshow("Image", image)
-    cv2.waitKey(0)
+    # i=0
+    # for all in cptrack:    
+    #     cv2.putText(image, str(i), all, cv2.FONT_HERSHEY_SIMPLEX,
+	# 	0.5, (255, 255, 255), 2)
+    #     i+=1
+    # cv2.imshow("Image", image)
+    # cv2.waitKey(0)
 
     return cptrack

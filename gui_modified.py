@@ -5,6 +5,7 @@ from tkinter.messagebox import askyesno
 import Draw_Track.mapping as mapping
 from threading import Thread
 import time
+import os
 
 root = Tk()
 root.title("Anki-Overdrive-Project")
@@ -284,3 +285,4 @@ def updateVehicles(gui):
 
 g = Gui(root)
 root.mainloop()
+os._exit(0)
