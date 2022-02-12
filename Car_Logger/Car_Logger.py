@@ -1,3 +1,5 @@
+# Class for receiving Live-Car-Data
+
 from threading import Thread
 import logging
 
@@ -11,6 +13,7 @@ class Car_Logger(Thread):
         self.car = self._kwargs['car']
         self.car.setLocationChangeCallback(self.locationChangeCallback)
     
+    # gets called every time the car sents an update
     def locationChangeCallback(self, addr, location, piece, speed, clockwise):
 
         self.car.location = location
