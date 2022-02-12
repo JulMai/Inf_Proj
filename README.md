@@ -6,3 +6,4 @@ Python-Projekt für Anki Overdrive Intersection-Kit
 
 
 (Vehicle-Klasse basierend auf Overdrive-Klasse von https://github.com/praneet22/Anki-Overdrive-Python)
+(benötigt bluepy)
