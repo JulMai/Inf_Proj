@@ -1,3 +1,5 @@
+# from https://github.com/praneet22/Anki-Overdrive-Python
+
 import struct
 import threading
 #import Queue as queue # Uncomment if using Python 2.7
